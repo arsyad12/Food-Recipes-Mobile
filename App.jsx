@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable prettier/prettier */
 /**
  * Sample React Native App
@@ -115,11 +116,39 @@ function App() {
             </ScrollView>
           </View>
 
-          <View>
-            <Text style={styles.headSection}>Popular Recipes</Text>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={styles.headSection}>Popular Recipess</Text>
+            <Text style={styles.moreInfoText}>More Info</Text>
           </View>
-
-
+        
+            <ScrollView>
+              <View style={{marginTop:20}}>
+              {[...Array(10)].map((item, key) => (
+                <View key={key} style={{flexDirection: 'row', paddingTop: 20}}>
+                  <View>
+                    <Image
+                      style={styles.popularRecipesImg}
+                      source={require('./asset/food3.jpg')}
+                    />
+                  </View>
+                  <View>
+                    <Text style={styles.textPopularRecipes}>
+                      Mie Pedas Maklima Biadaps
+                    </Text>
+                    <Text style={styles.textCategory}>Spicy, Salted, Acid</Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <Image
+                        style={{marginLeft: 10, marginTop: 2}}
+                        source={require('./asset/star.png')}
+                      />
+                      <Text style={styles.textRating}>4.9</Text>
+                    </View>
+                  </View>
+                </View>
+              ))}
+              </View>
+            </ScrollView>
+          
         </View>
       </SafeAreaView>
     </PaperProvider>
@@ -162,15 +191,46 @@ const styles = StyleSheet.create({
   newRecipesImage: {
     height: 160,
     width: 130,
-    borderWidth:3,
-    borderStyle:'solid',
-    borderRadius:20,
+    borderWidth: 3,
+    borderStyle: 'solid',
+    borderRadius: 20,
   },
 
   newRecipesContainer: {
-    marginTop:20,
+    marginTop: 20,
     paddingRight: 20,
-  
+  },
+
+  moreInfoText: {
+    color: '#6D61F2',
+    paddingTop: 25,
+  },
+
+  popularRecipesImg: {
+    height: 64,
+    width: 64,
+    borderRadius: 16,
+  },
+
+  textPopularRecipes: {
+    fontSize: 16,
+    color: '#666666',
+    fontWeight: 500,
+    paddingLeft: 10,
+    paddingBottom: 3,
+  },
+  textCategory: {
+    fontSize: 12,
+    color: '#B6B6B6',
+    fontWeight: 400,
+    paddingLeft: 10,
+    paddingBottom: 3,
+  },
+  textRating: {
+    fontSize: 12,
+    color: '#B6B6B6',
+    fontWeight: 400,
+    paddingLeft: 5,
   },
 });
 
