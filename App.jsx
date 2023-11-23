@@ -13,7 +13,7 @@ import {
   TextInput,
   Text,
   Surface,
-  Image,
+  Icon,
 } from 'react-native-paper';
 import {
   //ini adalah tag bawaan dar react native
@@ -21,8 +21,8 @@ import {
   ScrollView, //berguna untuk membuat seuatu section bisa di scrol
   StyleSheet, //berguna untuk styling di react native
   View, //view ini fungsinya adalah DIV di react native dan untuk kontennya dimasukan kedalam section
+  Image,
 } from 'react-native';
-import {green100} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 function App() {
   const [keyword, setKeyword] = React.useState('');
@@ -31,18 +31,52 @@ function App() {
     <PaperProvider>
       <SafeAreaView>
         <View style={styles.container}>
-          <TextInput
-            style={styles.searchBar}
-            label="Search Pasta, Bread, etc"
-            value={keyword}
-            onChangeText={text => setKeyword(text)}
-            mode={'outlined'}
-          />
-          <Text style={styles.headSection}>Popular For You</Text>
-          <Surface style={styles.surface} elevation={4}>
-          <Text>Blals</Text>
-          </Surface>
-          <Image source={require('./asset/seafood.png')} />
+          <View>
+            <TextInput
+              style={styles.searchBar}
+              label="Search Pasta, Bread, etc"
+              value={keyword}
+              onChangeText={text => setKeyword(text)}
+              mode={'outlined'}
+              outlineStyle={{borderRadius: 20}}
+            />
+          </View>
+
+          <View>
+            <Text style={styles.headSection}>Popular For You</Text>
+          </View>
+
+          <View style={{flexDirection: 'row', gap: 10}}>
+            <View style={styles.borderPopular}>
+              <Image
+                style={styles.popularImage}
+                source={require('./asset/hot-soup.png')}
+              />
+            </View>
+
+            <View style={styles.borderPopular}>
+              <Image
+                style={styles.popularImage}
+                source={require('./asset/fried-chicken.png')}
+              />
+            </View>
+            <View style={styles.borderPopular}>
+              <Image
+                style={styles.popularImage}
+                source={require('./asset/seafood.png')}
+              />
+            </View>
+            <View style={styles.borderPopular}>
+              <Image
+                style={styles.popularImage}
+                source={require('./asset/panna-cotta.png')}
+              />
+            </View>
+          </View>
+
+          <View>
+            <Text style={styles.headSection}>New Recipes</Text>
+          </View>
 
         </View>
       </SafeAreaView>
@@ -53,7 +87,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     margin: 30,
-    backgroundColor: 'white',
+    backgroundColor: '#FFFFFF',
     height: 900,
   },
 
@@ -67,6 +101,23 @@ const styles = StyleSheet.create({
     fontSize: 20,
     paddingTop: 20,
   },
+
+  popularImage: {
+    width: 54,
+    height: 54,
+    border: 'solid',
+  },
+
+  borderPopular: {
+    borderWidth: 1,
+    borderColor: 'yellow',
+    backgroundColor: 'yellow',
+    borderRadius: 20,
+    marginTop: 20,
+    padding: 10,
+  },
+
+  newRecipesImage:{}
 });
 
 export default App;
