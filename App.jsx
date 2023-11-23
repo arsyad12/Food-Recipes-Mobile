@@ -47,36 +47,78 @@ function App() {
           </View>
 
           <View style={{flexDirection: 'row', gap: 10}}>
-            <View style={styles.borderPopular}>
-              <Image
-                style={styles.popularImage}
-                source={require('./asset/hot-soup.png')}
-              />
+            <View style={{alignItems: 'center'}}>
+              <View style={styles.borderPopular}>
+                <Image
+                  style={styles.popularImage}
+                  source={require('./asset/hot-soup.png')}
+                />
+              </View>
+              <Text>Soup</Text>
             </View>
 
-            <View style={styles.borderPopular}>
-              <Image
-                style={styles.popularImage}
-                source={require('./asset/fried-chicken.png')}
-              />
+            <View style={{alignItems: 'center'}}>
+              <View style={styles.borderPopular}>
+                <Image
+                  style={styles.popularImage}
+                  source={require('./asset/fried-chicken.png')}
+                />
+              </View>
+              <Text>Chicken</Text>
             </View>
-            <View style={styles.borderPopular}>
-              <Image
-                style={styles.popularImage}
-                source={require('./asset/seafood.png')}
-              />
+
+            <View style={{alignItems: 'center'}}>
+              <View style={styles.borderPopular}>
+                <Image
+                  style={styles.popularImage}
+                  source={require('./asset/seafood.png')}
+                />
+              </View>
+              <Text>Seafood</Text>
             </View>
-            <View style={styles.borderPopular}>
-              <Image
-                style={styles.popularImage}
-                source={require('./asset/panna-cotta.png')}
-              />
+
+            <View style={{alignItems: 'center'}}>
+              <View style={styles.borderPopular}>
+                <Image
+                  style={styles.popularImage}
+                  source={require('./asset/panna-cotta.png')}
+                />
+              </View>
+              <Text>Desert</Text>
             </View>
           </View>
 
           <View>
             <Text style={styles.headSection}>New Recipes</Text>
           </View>
+
+          <View style={{flexDirection: 'row'}}>
+            <ScrollView horizontal={true}>
+              <View style={styles.newRecipesContainer}>
+                <Image
+                  style={styles.newRecipesImage}
+                  source={require('./asset/food1.jpg')}
+                />
+              </View>
+              <View style={styles.newRecipesContainer}>
+                <Image
+                  style={styles.newRecipesImage}
+                  source={require('./asset/food2.jpg')}
+                />
+              </View>
+              <View style={styles.newRecipesContainer}>
+                <Image
+                  style={styles.newRecipesImage}
+                  source={require('./asset/food3.jpg')}
+                />
+              </View>
+            </ScrollView>
+          </View>
+
+          <View>
+            <Text style={styles.headSection}>Popular Recipes</Text>
+          </View>
+
 
         </View>
       </SafeAreaView>
@@ -117,7 +159,19 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-  newRecipesImage:{}
+  newRecipesImage: {
+    height: 160,
+    width: 130,
+    borderWidth:3,
+    borderStyle:'solid',
+    borderRadius:20,
+  },
+
+  newRecipesContainer: {
+    marginTop:20,
+    paddingRight: 20,
+  
+  },
 });
 
 export default App;
