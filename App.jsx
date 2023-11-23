@@ -121,8 +121,8 @@ function App() {
             <Text style={styles.moreInfoText}>More Info</Text>
           </View>
         
-            <ScrollView>
-              <View style={{marginTop:20}}>
+            <ScrollView style={{marginTop:20}}>
+              <View >
               {[...Array(10)].map((item, key) => (
                 <View key={key} style={{flexDirection: 'row', paddingTop: 20}}>
                   <View>
