@@ -8,6 +8,8 @@
  */
 
 import React from 'react';
+
+
 import {
   PaperProvider,
   Button,
@@ -15,6 +17,8 @@ import {
   Text,
   Surface,
   Icon,
+  Searchbar
+
 } from 'react-native-paper';
 import {
   //ini adalah tag bawaan dar react native
@@ -33,12 +37,13 @@ function App() {
       <SafeAreaView>
         <View style={styles.container}>
           <View>
-            <TextInput
+
+            <Searchbar
               style={styles.searchBar}
-              label="Search Pasta, Bread, etc"
+              placeholder="Search Pasta, Bread, etc"
               value={keyword}
               onChangeText={text => setKeyword(text)}
-              mode={'outlined'}
+            
               outlineStyle={{borderRadius: 20}}
             />
           </View>
@@ -163,7 +168,6 @@ const styles = StyleSheet.create({
   },
 
   searchBar: {
-    padding: 3,
     borderRadius: 20,
     backgroundColor: '#EFEFEF',
   },
