@@ -49,7 +49,7 @@ function App() {
           </View>
 
           <View>
-            <Text style={styles.headSection}>Popular For You</Text>
+            <Text style={styles.headSection}>Popular For Your</Text>
           </View>
 
           <View style={{flexDirection: 'row', gap: 10}}>
@@ -122,7 +122,7 @@ function App() {
           </View>
 
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={styles.headSection}>Popular Recipess</Text>
+            <Text style={styles.headSection}>Popular Recipes</Text>
             <Text style={styles.moreInfoText}>More Info</Text>
           </View>
         
