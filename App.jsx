@@ -34,7 +34,7 @@ function App() {
   return (
     <PaperProvider>
       <SafeAreaView>
-      <ScrollView >
+      <ScrollView style={styles.outContainer}>
         <View style={styles.container}>
           <View>
             <Searchbar
@@ -167,13 +167,17 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     margin: 30,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#ffbd59',
     height: 900,
+  },
+
+  outContainer:{
+    backgroundColor: '#ffbd59',
   },
 
   searchBar: {
     borderRadius: 20,
-    backgroundColor: '#EFEFEF',
+    backgroundColor: '#ffea88',
   },
 
   headSection: {
@@ -189,8 +193,8 @@ const styles = StyleSheet.create({
 
   borderPopular: {
     borderWidth: 1,
-    borderColor: 'yellow',
-    backgroundColor: 'yellow',
+    borderColor: '#FFFF00',
+    backgroundColor: '#FFFF00',
     borderRadius: 20,
     marginTop: 20,
     padding: 10,
