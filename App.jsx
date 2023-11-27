@@ -9,7 +9,6 @@
 
 import React from 'react';
 
-
 import {
   PaperProvider,
   Button,
@@ -17,17 +16,17 @@ import {
   Text,
   Surface,
   Icon,
-  Searchbar
-
+  Searchbar,
 } from 'react-native-paper';
 import {
-  //ini adalah tag bawaan dar react native
+  //   ini adalah tag bawaan dar react native
   SafeAreaView, //brguna untuk Meyesuaikan ukuran layar agar design tidak rusak, contohnya saat HP mempunyai Poni
   ScrollView, //berguna untuk membuat seuatu section bisa di scrol
   StyleSheet, //berguna untuk styling di react native
   View, //view ini fungsinya adalah DIV di react native dan untuk kontennya dimasukan kedalam section
   Image,
 } from 'react-native';
+import {black} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 function App() {
   const [keyword, setKeyword] = React.useState('');
@@ -35,15 +34,14 @@ function App() {
   return (
     <PaperProvider>
       <SafeAreaView>
+      <ScrollView >
         <View style={styles.container}>
           <View>
-
             <Searchbar
               style={styles.searchBar}
               placeholder="Search Pasta, Bread, etc"
               value={keyword}
               onChangeText={text => setKeyword(text)}
-            
               outlineStyle={{borderRadius: 20}}
             />
           </View>
@@ -105,18 +103,24 @@ function App() {
                   style={styles.newRecipesImage}
                   source={require('./asset/food1.jpg')}
                 />
+                <View style={styles.newRecipesOverlay} />
+                <Text style={styles.newRecipesTitle}>Oseng</Text>
               </View>
               <View style={styles.newRecipesContainer}>
                 <Image
                   style={styles.newRecipesImage}
                   source={require('./asset/food2.jpg')}
                 />
+                <View style={styles.newRecipesOverlay} />
+                <Text style={styles.newRecipesTitle}>Pizza</Text>
               </View>
               <View style={styles.newRecipesContainer}>
                 <Image
                   style={styles.newRecipesImage}
                   source={require('./asset/food3.jpg')}
                 />
+                <View style={styles.newRecipesOverlay} />
+                <Text style={styles.newRecipesTitle}>Seafood</Text>
               </View>
             </ScrollView>
           </View>
@@ -125,9 +129,9 @@ function App() {
             <Text style={styles.headSection}>Popular Recipes</Text>
             <Text style={styles.moreInfoText}>More Info</Text>
           </View>
-        
-            <ScrollView style={{marginTop:20}}>
-              <View >
+
+         
+            <View>
               {[...Array(10)].map((item, key) => (
                 <View key={key} style={{flexDirection: 'row', paddingTop: 20}}>
                   <View>
@@ -151,10 +155,10 @@ function App() {
                   </View>
                 </View>
               ))}
-              </View>
-            </ScrollView>
+            </View>
           
         </View>
+        </ScrollView>
       </SafeAreaView>
     </PaperProvider>
   );
@@ -195,9 +199,27 @@ const styles = StyleSheet.create({
   newRecipesImage: {
     height: 160,
     width: 130,
-    borderWidth: 3,
+    borderWidth: 1,
     borderStyle: 'solid',
     borderRadius: 20,
+  },
+
+  newRecipesOverlay: {
+    height: 160,
+    width: 130,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderRadius: 20,
+    position: 'absolute',
+    backgroundColor: 'black',
+    opacity: 0.4,
+  },
+
+  newRecipesTitle: {
+    position: 'absolute',
+    color: 'white',
+    paddingLeft: 10,
+    paddingTop: 130,
   },
 
   newRecipesContainer: {
