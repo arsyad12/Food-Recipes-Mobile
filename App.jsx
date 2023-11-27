@@ -167,17 +167,17 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     margin: 30,
-    backgroundColor: '#ffbd59',
+    backgroundColor: '#ffffe5',
     height: 900,
   },
 
   outContainer:{
-    backgroundColor: '#ffbd59',
+    backgroundColor: '#ffffe5',
   },
 
   searchBar: {
     borderRadius: 20,
-    backgroundColor: '#ffea88',
+    backgroundColor: '#EFEFEF',
   },
 
   headSection: {
@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     width: 130,
     borderWidth: 1,
     borderStyle: 'solid',
+    borderColor:'black',
     borderRadius: 20,
     position: 'absolute',
     backgroundColor: 'black',
@@ -224,6 +225,7 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingLeft: 10,
     paddingTop: 130,
+    fontWeight:700
   },
 
   newRecipesContainer: {
