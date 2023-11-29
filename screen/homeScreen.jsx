@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  PaperProvider,
-  Button,
-  TextInput,
-  Text,
-  Surface,
-  Icon,
-  Searchbar,
-} from 'react-native-paper';
+import {PaperProvider, Text, Searchbar} from 'react-native-paper';
 import {
   //   ini adalah tag bawaan dar react native
   SafeAreaView, //brguna untuk Meyesuaikan ukuran layar agar design tidak rusak, contohnya saat HP mempunyai Poni
@@ -16,7 +8,6 @@ import {
   View, //view ini fungsinya adalah DIV di react native dan untuk kontennya dimasukan kedalam section
   Image,
   TouchableOpacity,
-  TouchableHighlight,
 } from 'react-native';
 
 import {black} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
@@ -25,7 +16,7 @@ function HomeScreen({navigation}) {
   const [keyword, setKeyword] = React.useState('');
   return (
     /* eslint-disable react-native/no-inline-styles */
-    /* eslint-disable prettier/prettier */
+
     /**
      * Sample React Native App
      * https://github.com/facebook/react-native

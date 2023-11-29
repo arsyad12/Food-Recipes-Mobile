@@ -35,6 +35,9 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+          {/* name digunakan untuk link navigasi nantinya */}
+          {/* komponen adalah page yang akan di tampilkan */}
+          {/* component yang pertama kali dipanggil akan jadi homepage */}
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Details" component={DetailRecipes} options={{headerShown: false}}/>
       </Stack.Navigator>
