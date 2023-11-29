@@ -15,119 +15,124 @@ import {
   StyleSheet, //berguna untuk styling di react native
   View, //view ini fungsinya adalah DIV di react native dan untuk kontennya dimasukan kedalam section
   Image,
+  TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native';
 
 import {black} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   const [keyword, setKeyword] = React.useState('');
   return (
     /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable prettier/prettier */
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+    /* eslint-disable prettier/prettier */
+    /**
+     * Sample React Native App
+     * https://github.com/facebook/react-native
+     *
+     * @format
+     */
     <PaperProvider>
       <SafeAreaView>
-      <ScrollView style={styles.outContainer}>
-        <View style={styles.container}>
-          <View>
-            <Searchbar
-              style={styles.searchBar}
-              placeholder="Search Pasta, Bread, etc"
-              value={keyword}
-              onChangeText={text => setKeyword(text)}
-              outlineStyle={{borderRadius: 20}}
-            />
-          </View>
-
-          <View>
-            <Text style={styles.headSection}>Popular For Your</Text>
-          </View>
-
-          <View style={{flexDirection: 'row', gap: 10}}>
-            <View style={{alignItems: 'center'}}>
-              <View style={styles.borderPopular}>
-                <Image
-                  style={styles.popularImage}
-                  source={require('../asset/hot-soup.png')}
-                />
-              </View>
-              <Text>Soup</Text>
+        <ScrollView style={styles.outContainer}>
+          <View style={styles.container}>
+            <View>
+              <Searchbar
+                style={styles.searchBar}
+                placeholder="Search Pasta, Bread, etc"
+                value={keyword}
+                onChangeText={text => setKeyword(text)}
+                outlineStyle={{borderRadius: 20}}
+              />
             </View>
 
-            <View style={{alignItems: 'center'}}>
-              <View style={styles.borderPopular}>
-                <Image
-                  style={styles.popularImage}
-                  source={require('../asset/fried-chicken.png')}
-                />
-              </View>
-              <Text>Chicken</Text>
+            <View>
+              <Text style={styles.headSection}>Popular For Your</Text>
             </View>
 
-            <View style={{alignItems: 'center'}}>
-              <View style={styles.borderPopular}>
-                <Image
-                  style={styles.popularImage}
-                  source={require('../asset/seafood.png')}
-                />
+            <View style={{flexDirection: 'row', gap: 10}}>
+              <View style={{alignItems: 'center'}}>
+                <View style={styles.borderPopular}>
+                  <Image
+                    style={styles.popularImage}
+                    source={require('../asset/hot-soup.png')}
+                  />
+                </View>
+                <Text>Soup</Text>
               </View>
-              <Text>Seafood</Text>
+
+              <View style={{alignItems: 'center'}}>
+                <View style={styles.borderPopular}>
+                  <Image
+                    style={styles.popularImage}
+                    source={require('../asset/fried-chicken.png')}
+                  />
+                </View>
+                <Text>Chicken</Text>
+              </View>
+
+              <View style={{alignItems: 'center'}}>
+                <View style={styles.borderPopular}>
+                  <Image
+                    style={styles.popularImage}
+                    source={require('../asset/seafood.png')}
+                  />
+                </View>
+                <Text>Seafood</Text>
+              </View>
+
+              <View style={{alignItems: 'center'}}>
+                <View style={styles.borderPopular}>
+                  <Image
+                    style={styles.popularImage}
+                    source={require('../asset/panna-cotta.png')}
+                  />
+                </View>
+                <Text>Desert</Text>
+              </View>
             </View>
 
-            <View style={{alignItems: 'center'}}>
-              <View style={styles.borderPopular}>
-                <Image
-                  style={styles.popularImage}
-                  source={require('../asset/panna-cotta.png')}
-                />
-              </View>
-              <Text>Desert</Text>
+            <View>
+              <Text style={styles.headSection}>New Recipes</Text>
             </View>
-          </View>
 
-          <View>
-            <Text style={styles.headSection}>New Recipes</Text>
-          </View>
+            <View style={{flexDirection: 'row'}}>
+              <ScrollView horizontal={true}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Details')}>
+                  <View style={styles.newRecipesContainer}>
+                    <Image
+                      style={styles.newRecipesImage}
+                      source={require('../asset/food1.jpg')}
+                    />
+                    <View style={styles.newRecipesOverlay} />
+                    <Text style={styles.newRecipesTitle}>Oseng</Text>
+                  </View>
+                </TouchableOpacity>
+                <View style={styles.newRecipesContainer}>
+                  <Image
+                    style={styles.newRecipesImage}
+                    source={require('../asset/food2.jpg')}
+                  />
+                  <View style={styles.newRecipesOverlay} />
+                  <Text style={styles.newRecipesTitle}>Pizza</Text>
+                </View>
+                <View style={styles.newRecipesContainer}>
+                  <Image
+                    style={styles.newRecipesImage}
+                    source={require('../asset/food3.jpg')}
+                  />
+                  <View style={styles.newRecipesOverlay} />
+                  <Text style={styles.newRecipesTitle}>Seafood</Text>
+                </View>
+              </ScrollView>
+            </View>
 
-          <View style={{flexDirection: 'row'}}>
-            <ScrollView horizontal={true}>
-              <View style={styles.newRecipesContainer}>
-                <Image
-                  style={styles.newRecipesImage}
-                  source={require('../asset/food1.jpg')}
-                />
-                <View style={styles.newRecipesOverlay} />
-                <Text style={styles.newRecipesTitle}>Oseng</Text>
-              </View>
-              <View style={styles.newRecipesContainer}>
-                <Image
-                  style={styles.newRecipesImage}
-                  source={require('../asset/food2.jpg')}
-                />
-                <View style={styles.newRecipesOverlay} />
-                <Text style={styles.newRecipesTitle}>Pizza</Text>
-              </View>
-              <View style={styles.newRecipesContainer}>
-                <Image
-                  style={styles.newRecipesImage}
-                  source={require('../asset/food3.jpg')}
-                />
-                <View style={styles.newRecipesOverlay} />
-                <Text style={styles.newRecipesTitle}>Seafood</Text>
-              </View>
-            </ScrollView>
-          </View>
-
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={styles.headSection}>Popular Recipes</Text>
-            <Text style={styles.moreInfoText}>More Info</Text>
-          </View>
-
+            <View
+              style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Text style={styles.headSection}>Popular Recipes</Text>
+              <Text style={styles.moreInfoText}>More Info</Text>
+            </View>
 
             <View>
               {[...Array(10)].map((item, key) => (
@@ -154,8 +159,7 @@ function HomeScreen() {
                 </View>
               ))}
             </View>
-
-        </View>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </PaperProvider>
@@ -169,7 +173,7 @@ const styles = StyleSheet.create({
     height: 900,
   },
 
-  outContainer:{
+  outContainer: {
     backgroundColor: '#ffffe5',
   },
 
@@ -211,7 +215,7 @@ const styles = StyleSheet.create({
     width: 130,
     borderWidth: 1,
     borderStyle: 'solid',
-    borderColor:'black',
+    borderColor: 'black',
     borderRadius: 20,
     position: 'absolute',
     backgroundColor: 'black',
@@ -223,7 +227,7 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingLeft: 10,
     paddingTop: 130,
-    fontWeight:700,
+    fontWeight: 700,
   },
 
   newRecipesContainer: {
@@ -263,6 +267,5 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
 });
-
 
 export default HomeScreen;
