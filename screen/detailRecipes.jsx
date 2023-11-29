@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
-import {PaperProvider} from 'react-native-paper';
+import {PaperProvider, Button} from 'react-native-paper';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,13 +10,12 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Button,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
 function DetailRecipes() {
-  const [lineChoice, setLineChoice] = React.useState(false);
+  const [lineChoice, setLineChoice] = React.useState('ingredients');
 
   const choiceHandler = () => {
     setLineChoice(true);
@@ -60,39 +59,64 @@ function DetailRecipes() {
               }}
             />
             <View style={styles.containerText}>
-              <TouchableOpacity onPress={() => choiceHandler()}>
-                <Text>Ingredients</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={() => choiceHandler()}>
-                <Text onPress={() => setLineChoice(!false)}>Video Step</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={styles.containerLine}>
-              <Ionicon name="remove-outline" size={100} color="orange" />
-            </View>
-            <View style={styles.containerLine2}>
-              <Ionicon name="remove-outline" size={100} color="orange" />
+              <Button
+                onPress={() => setLineChoice('ingredients')}
+                labelStyle={{
+                  fontSize: 15,
+                  ...(lineChoice === 'ingredients'
+                    ? {
+                        paddingBottom: 4,
+                        color: 'black',
+                        borderBottomColor: 'yellow',
+                        borderBottomWidth: 3,
+                      }
+                    : {color: 'grey'}),
+                }}>
+                Ingredients
+              </Button>
+              <Button
+                onPress={() => setLineChoice('video step')}
+                labelStyle={{
+                  fontSize: 15,
+                  ...(lineChoice === 'video step'
+                    ? {
+                        paddingBottom: 4,
+                        color: 'black',
+                        borderBottomColor: 'yellow',
+                        borderBottomWidth: 3,
+                      }
+                    : {color: 'grey'}),
+                }}>
+                Video Step
+              </Button>
             </View>
 
             <View style={styles.containerVidImg}>
-              {lineChoice ? (
+              {lineChoice === 'video step' ? (
                 <>
-                  <Image source={require('../asset/vid.png')} />
-                  <Text style={styles.textDescription}>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Voluptates vitae id deserunt commodi reprehenderit a alias
-                    sint. Sapiente, illum repudiandae. Ut nulla illum qui enim
-                    facere sapiente at voluptatibus maxime!
+                  <View>
+                    <Image source={require('../asset/vid.png')} />
+                  </View>
+                  <View>
+                    <Text style={styles.textDescription}>
+                      CARA MEMBUAT SOP SEAFOOD YANG MUDAH
+                    </Text>
+                    <Text style={styles.textLink}>
+                      https://www.youtube.com/watch?v=N2aRUxLK1_s
+                    </Text>
+                  </View>
+                </>
+              ) : null}
+              {lineChoice === 'ingredients' ? (
+                <>
+                  <Text style={styles.textIngredient}>
+                    - 2 slices whole-grain bread (bakery-fresh recommended)
+                    {'\n'} - 1 tablespoon hummus - 2 slices tomato - 1/2 small
+                    {'\n'} cucumber, thinly sliced lengthwise {'\n'} - 1 slice
+                    low-fat cheese
                   </Text>
                 </>
-              ) : (
-                <Text style={styles.textIngredient}>
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Voluptates vitae id deserunt commodi reprehenderit a alias
-                  sint. Sapiente, illum repudiandae. Ut nulla illum qui enim
-                  facere sapiente at voluptatibus maxime!
-                </Text>
-              )}
+              ) : null}
             </View>
           </View>
         </ScrollView>
@@ -125,19 +149,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     padding: 15,
-    gap: 10,
   },
 
   containerLine: {
     position: 'absolute',
-    paddingLeft: 2,
-    top: -9,
+    paddingLeft: 30,
+    paddingTop: 20,
   },
 
   containerLine2: {
     position: 'absolute',
-    paddingLeft: 80,
-    top: -9,
+    paddingLeft: 130,
+    paddingTop: 20,
   },
 
   containerVidImg: {
@@ -150,6 +173,14 @@ const styles = StyleSheet.create({
   textDescription: {
     paddingRight: 160,
     textAlign: 'justify',
+  },
+
+  textLink: {
+    paddingTop: 5,
+    paddingRight: 160,
+    textAlign: 'justify',
+    fontSize: 11,
+    color: 'grey',
   },
 
   textIngredient: {
