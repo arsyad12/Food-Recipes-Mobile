@@ -9,7 +9,7 @@
       "link": "https://www.youtube.com/watch?v=uQb-9Ak5iwg&pp=ygUbc2xvdy1jb29rZXItc3R1ZmZlZC1wZXBwZXJz"
     },
     "isPopular": true,
-    "isNew": false
+    "isNew": true
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2020/11/16/0/FNK_Air-Fryer-Parmesan-Chicken-Broccoli_H1_s4x3.jpg.rend.hgtvcom.826.620.suffix/1605561210481.jpeg",
@@ -21,7 +21,7 @@
       "link": "https://www.youtube.com/watch?v=8uHJBaDC7n4"
     },
     "isPopular": true,
-    "isNew": false
+    "isNew": true
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2015/1/28/2/KC0413H_Ricotta-Gnocchi_s4x3.jpg.rend.hgtvcom.1280.720.suffix/1532460357212.jpeg",
@@ -33,7 +33,7 @@
       "link": "https://www.youtube.com/watch?v=bRsPRBUa434"
     },
     "isPopular": true,
-    "isNew": false
+    "isNew": true
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2003/10/16/4/tm1b27_pork_tenderloins3.jpg.rend.hgtvcom.1280.720.suffix/1431255253080.jpeg",
@@ -56,7 +56,7 @@
       "title": "Salmon Cakes Recipe",
       "link": "https://www.youtube.com/watch?v=gOwBlnSmuxw"
     },
-    "isPopular": true,
+    "isPopular": false,
     "isNew": false
   },
   {
@@ -68,7 +68,7 @@
       "title": "Lemon Parmesan Roasted Broccoli!",
       "link": "https://www.youtube.com/watch?v=OCr9TEMtHjw"
     },
-    "isPopular": true,
+    "isPopular": false,
     "isNew": false
   },
   {
@@ -80,7 +80,7 @@
       "title": "Scalloped Potato Roll",
       "link": "https://www.youtube.com/watch?v=AEhBwiIEdj4"
     },
-    "isPopular": true,
+    "isPopular": false,
     "isNew": false
   },
   {
@@ -92,7 +92,7 @@
       "title": "Maple roasted squash salad ",
       "link": "https://www.youtube.com/watch?v=p2RNFbWMsr4"
     },
-    "isPopular": true,
+    "isPopular": false,
     "isNew": false
   },
   
@@ -105,7 +105,7 @@
       "title": "Mediterranean Baked Fish with Tomatoes and Capers",
       "link": "https://www.youtube.com/watch?v=eZR0GnnWVlQ"
     },
-    "isPopular": true,
+    "isPopular": false,
     "isNew": false
   },
   
@@ -119,7 +119,7 @@
       "title": "The CRUNCHIEST Lemon Chicken ",
       "link": "https://www.youtube.com/watch?v=zHFp2mYQjTg"
     },
-    "isPopular": true,
+    "isPopular": false,
     "isNew": false
   }
   

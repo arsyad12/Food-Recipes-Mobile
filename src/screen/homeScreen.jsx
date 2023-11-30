@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+//get data dari API static
 import listData from '../data/recipes.json';
 
 function HomeScreen({navigation}) {
@@ -126,12 +127,12 @@ function HomeScreen({navigation}) {
             </View>
 
             <View>
-              {listData?.map((item, key) => (
+              {listData.map((item, key) => (
                 <View key={key} style={{flexDirection: 'row', paddingTop: 20}}>
                   <View>
                     <Image
                       style={styles.popularRecipesImg}
-                      source={item.image}
+                      source={{uri: item.image}}
                     />
                   </View>
                   <View>
@@ -241,6 +242,7 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     paddingLeft: 10,
     paddingBottom: 3,
+    paddingRight: 60,
   },
   textCategory: {
     fontSize: 12,
