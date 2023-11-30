@@ -89,17 +89,15 @@ function HomeScreen({navigation}) {
             </View>
 
             <View>
-              <Text style={styles.headSection}>New Recipes</Text>
-            </View>
-
-            <View>
               <View style={{flexDirection: 'row'}}>
                 <ScrollView horizontal={true}>
                   {listData
                     .filter(item => item.isNew === true)
                     .map((item, key) => (
                       <TouchableOpacity
-                        onPress={() => navigation.navigate('Details')}>
+                        //mengirim data yang udah diambil dari listdata ke detail page
+                        //kemudian kita kirim isi item dari hasil maping
+                        onPress={() => navigation.navigate('Details', item)}>
                         <View key={key} style={styles.newRecipesContainer}>
                           <Image
                             style={styles.newRecipesImage}
@@ -167,7 +165,7 @@ const styles = StyleSheet.create({
   container: {
     margin: 30,
     backgroundColor: '#ffffe5',
-    height: 900,
+    height: 1000,
   },
 
   outContainer: {

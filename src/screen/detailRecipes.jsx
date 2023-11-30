@@ -10,16 +10,16 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicon from 'react-native-vector-icons/Ionicons';
 
-function DetailRecipes() {
-  const [lineChoice, setLineChoice] = React.useState('ingredients');
+function DetailRecipes({navigation, route}) {
+  //route berguna untuk menampung data yang dikirim dari homscreen saat navigasi
+  const {image, title, ingredients, video} = route.params;
 
-  const choiceHandler = () => {
-    setLineChoice(true);
-  };
+  const [lineChoice, setLineChoice] = React.useState('ingredients');
 
   return (
     <PaperProvider>
@@ -28,7 +28,7 @@ function DetailRecipes() {
           <View>
             <View>
               <Image
-                source={require('../asset/food1.jpg')}
+                source={{uri: image}}
                 style={{
                   width: 400,
                   height: 400,
@@ -38,14 +38,15 @@ function DetailRecipes() {
             </View>
 
             <View style={styles.overlay} />
-
-            <View style={styles.arrow}>
-              <Icon name="angle-left" size={35} color="white" />
-            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+              <View style={styles.arrow}>
+                <Icon name="angle-left" size={35} color="white" />
+              </View>
+            </TouchableOpacity>
 
             <View style={styles.containerFoodName}>
               <Text style={{fontSize: 20, color: 'white', fontWeight: 600}}>
-                Soup Seafood
+                {title}
               </Text>
             </View>
           </View>
@@ -98,23 +99,19 @@ function DetailRecipes() {
                     <Image source={require('../asset/vid.png')} />
                   </View>
                   <View>
-                    <Text style={styles.textDescription}>
-                      CARA MEMBUAT SOP SEAFOOD YANG MUDAH
-                    </Text>
-                    <Text style={styles.textLink}>
-                      https://www.youtube.com/watch?v=N2aRUxLK1_s
-                    </Text>
+                    <Text style={styles.textDescription}>{video?.title}</Text>
+                    <TouchableOpacity
+                      onPress={() => {
+                        Linking.openURL(video?.link);
+                      }}>
+                      <Button style={styles.textLink}>{video?.link}</Button>
+                    </TouchableOpacity>
                   </View>
                 </>
               ) : null}
               {lineChoice === 'ingredients' ? (
                 <>
-                  <Text style={styles.textIngredient}>
-                    - 2 slices whole-grain bread (bakery-fresh recommended)
-                    {'\n'} - 1 tablespoon hummus - 2 slices tomato - 1/2 small
-                    {'\n'} cucumber, thinly sliced lengthwise {'\n'} - 1 slice
-                    low-fat cheese
-                  </Text>
+                  <Text style={styles.textIngredient}>{ingredients}</Text>
                 </>
               ) : null}
             </View>
@@ -165,22 +162,23 @@ const styles = StyleSheet.create({
 
   containerVidImg: {
     position: 'absolute',
-    marginLeft: 15,
+    marginLeft: 25,
     marginTop: 65,
     flexDirection: 'row',
     gap: 15,
   },
   textDescription: {
+    paddingTop: 7,
     paddingRight: 160,
     textAlign: 'justify',
   },
 
   textLink: {
-    paddingTop: 5,
-    paddingRight: 160,
-    textAlign: 'justify',
-    fontSize: 11,
-    color: 'grey',
+    paddingTop: 1,
+    width: 300,
+    position: 'absolute',
+    left: -21,
+    top: -5,
   },
 
   textIngredient: {
