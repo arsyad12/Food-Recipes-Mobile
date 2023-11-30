@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {black} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
+import listData from '../data/recipes.json';
 
 function HomeScreen({navigation}) {
   const [keyword, setKeyword] = React.useState('');
@@ -126,25 +126,23 @@ function HomeScreen({navigation}) {
             </View>
 
             <View>
-              {[...Array(10)].map((item, key) => (
+              {listData?.map((item, key) => (
                 <View key={key} style={{flexDirection: 'row', paddingTop: 20}}>
                   <View>
                     <Image
                       style={styles.popularRecipesImg}
-                      source={require('../asset/food3.jpg')}
+                      source={item.image}
                     />
                   </View>
                   <View>
-                    <Text style={styles.textPopularRecipes}>
-                      Mie Pedas Maklima Biadaps
-                    </Text>
+                    <Text style={styles.textPopularRecipes}>{item.title}</Text>
                     <Text style={styles.textCategory}>Spicy, Salted, Acid</Text>
                     <View style={{flexDirection: 'row'}}>
                       <Image
                         style={{marginLeft: 10, marginTop: 2}}
                         source={require('../asset/star.png')}
                       />
-                      <Text style={styles.textRating}>4.9</Text>
+                      <Text style={styles.textRating}>4.8</Text>
                     </View>
                   </View>
                 </View>
