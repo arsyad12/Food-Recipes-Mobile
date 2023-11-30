@@ -88,36 +88,35 @@ function HomeScreen({navigation}) {
               <Text style={styles.headSection}>New Recipes</Text>
             </View>
 
-            <View style={{flexDirection: 'row'}}>
-              <ScrollView horizontal={true}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('Details')}>
-                  <View style={styles.newRecipesContainer}>
-                    <Image
-                      style={styles.newRecipesImage}
-                      source={require('../asset/food1.jpg')}
-                    />
-                    <View style={styles.newRecipesOverlay} />
-                    <Text style={styles.newRecipesTitle}>Oseng</Text>
-                  </View>
-                </TouchableOpacity>
-                <View style={styles.newRecipesContainer}>
-                  <Image
-                    style={styles.newRecipesImage}
-                    source={require('../asset/food2.jpg')}
-                  />
-                  <View style={styles.newRecipesOverlay} />
-                  <Text style={styles.newRecipesTitle}>Pizza</Text>
-                </View>
-                <View style={styles.newRecipesContainer}>
-                  <Image
-                    style={styles.newRecipesImage}
-                    source={require('../asset/food3.jpg')}
-                  />
-                  <View style={styles.newRecipesOverlay} />
-                  <Text style={styles.newRecipesTitle}>Seafood</Text>
-                </View>
-              </ScrollView>
+            <View>
+              <Text style={styles.headSection}>New Recipes</Text>
+            </View>
+
+            <View>
+              <View style={{flexDirection: 'row'}}>
+                <ScrollView horizontal={true}>
+                  {listData
+                    .filter(item => item.isNew === true)
+                    .map((item, key) => (
+                      <TouchableOpacity
+                        onPress={() => navigation.navigate('Details')}>
+                        <View key={key} style={styles.newRecipesContainer}>
+                          <Image
+                            style={styles.newRecipesImage}
+                            source={{uri: item.image}}
+                          />
+                          <View style={styles.newRecipesOverlay} />
+                          <Text
+                            ellipsizeMode="tail"
+                            numberOfLines={1}
+                            style={styles.newRecipesTitle}>
+                            {item.title}
+                          </Text>
+                        </View>
+                      </TouchableOpacity>
+                    ))}
+                </ScrollView>
+              </View>
             </View>
 
             <View
@@ -127,27 +126,35 @@ function HomeScreen({navigation}) {
             </View>
 
             <View>
-              {listData.map((item, key) => (
-                <View key={key} style={{flexDirection: 'row', paddingTop: 20}}>
-                  <View>
-                    <Image
-                      style={styles.popularRecipesImg}
-                      source={{uri: item.image}}
-                    />
-                  </View>
-                  <View>
-                    <Text style={styles.textPopularRecipes}>{item.title}</Text>
-                    <Text style={styles.textCategory}>Spicy, Salted, Acid</Text>
-                    <View style={{flexDirection: 'row'}}>
+              {listData
+                .filter(item => item.isPopular === true)
+                .map((item, key) => (
+                  <View
+                    key={key}
+                    style={{flexDirection: 'row', paddingTop: 20}}>
+                    <View>
                       <Image
-                        style={{marginLeft: 10, marginTop: 2}}
-                        source={require('../asset/star.png')}
+                        style={styles.popularRecipesImg}
+                        source={{uri: item.image}}
                       />
-                      <Text style={styles.textRating}>4.8</Text>
+                    </View>
+                    <View>
+                      <Text style={styles.textPopularRecipes}>
+                        {item.title}
+                      </Text>
+                      <Text style={styles.textCategory}>
+                        Spicy, Salted, Acid
+                      </Text>
+                      <View style={{flexDirection: 'row'}}>
+                        <Image
+                          style={{marginLeft: 10, marginTop: 2}}
+                          source={require('../asset/star.png')}
+                        />
+                        <Text style={styles.textRating}>4.8</Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              ))}
+                ))}
             </View>
           </View>
         </ScrollView>
