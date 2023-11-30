@@ -95,6 +95,7 @@ function HomeScreen({navigation}) {
                     .filter(item => item.isNew === true)
                     .map((item, key) => (
                       <TouchableOpacity
+                        key={key}
                         //mengirim data yang udah diambil dari listdata ke detail page
                         //kemudian kita kirim isi item dari hasil maping
                         onPress={() => navigation.navigate('Details', item)}>
@@ -188,11 +189,9 @@ const styles = StyleSheet.create({
   popularImage: {
     width: 54,
     height: 54,
-    border: 'solid',
   },
 
   borderPopular: {
-    borderWidth: 1,
     borderColor: '#FFFF00',
     backgroundColor: '#FFFF00',
     borderRadius: 20,
@@ -203,16 +202,12 @@ const styles = StyleSheet.create({
   newRecipesImage: {
     height: 160,
     width: 130,
-    borderWidth: 1,
-    borderStyle: 'solid',
     borderRadius: 20,
   },
 
   newRecipesOverlay: {
     height: 160,
     width: 130,
-    borderWidth: 1,
-    borderStyle: 'solid',
     borderColor: 'black',
     borderRadius: 20,
     position: 'absolute',
@@ -241,7 +236,6 @@ const styles = StyleSheet.create({
   popularRecipesImg: {
     height: 64,
     width: 64,
-    borderRadius: 16,
   },
 
   textPopularRecipes: {

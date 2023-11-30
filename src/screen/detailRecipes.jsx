@@ -13,7 +13,6 @@ import {
   Linking, //untuk redirect ke link url
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import Ionicon from 'react-native-vector-icons/Ionicons';
 
 function DetailRecipes({navigation, route}) {
   //route berguna untuk menampung data yang dikirim dari homscreen saat navigasi
