@@ -130,12 +130,15 @@ function HomeScreen({navigation}) {
                   <View
                     key={key}
                     style={{flexDirection: 'row', paddingTop: 20}}>
-                    <View>
-                      <Image
-                        style={styles.popularRecipesImg}
-                        source={{uri: item.image}}
-                      />
-                    </View>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Details', item)}>
+                      <View>
+                        <Image
+                          style={styles.popularRecipesImg}
+                          source={{uri: item.image}}
+                        />
+                      </View>
+                    </TouchableOpacity>
                     <View>
                       <Text style={styles.textPopularRecipes}>
                         {item.title}

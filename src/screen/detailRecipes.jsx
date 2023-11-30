@@ -10,7 +10,7 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Linking,
+  Linking, //untuk redirect ke link url
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicon from 'react-native-vector-icons/Ionicons';
@@ -96,7 +96,12 @@ function DetailRecipes({navigation, route}) {
               {lineChoice === 'video step' ? (
                 <>
                   <View>
-                    <Image source={require('../asset/vid.png')} />
+                    <TouchableOpacity
+                      onPress={() => {
+                        Linking.openURL(video?.link);
+                      }}>
+                      <Image source={require('../asset/vid.png')} />
+                    </TouchableOpacity>
                   </View>
                   <View>
                     <Text style={styles.textDescription}>{video?.title}</Text>
