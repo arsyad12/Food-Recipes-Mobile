@@ -104,7 +104,11 @@ function DetailRecipes({navigation, route}) {
                       onPress={() => {
                         Linking.openURL(video?.link);
                       }}>
-                      <Button style={styles.textLink}>{video?.link}</Button>
+                      <Button style={styles.buttonLink}>
+                        <Text style={{color: 'grey', fontSize: 11}}>
+                          {video?.link}
+                        </Text>
+                      </Button>
                     </TouchableOpacity>
                   </View>
                 </>
@@ -173,7 +177,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
   },
 
-  textLink: {
+  buttonLink: {
     paddingTop: 1,
     width: 300,
     position: 'absolute',
