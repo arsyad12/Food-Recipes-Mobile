@@ -13,13 +13,18 @@ import {
 import IconMail from 'react-native-vector-icons/AntDesign';
 import IconPass from 'react-native-vector-icons/Feather';
 function LoginScreen({navigation}) {
-  const [user, setUser] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
   return (
     <PaperProvider>
       <SafeAreaView>
         <ScrollView>
           <View style={{backgroundColor: '#ffffe5'}}>
             <View style={styles.container}>
+              <View style={styles.containerLogo}>
+                <Image source={require('../asset/ic_launcher_round.png')} />
+              </View>
+
               <View style={styles.textHeadContainer}>
                 <Text style={styles.textHead}>Let’s Get Started !</Text>
               </View>
@@ -40,8 +45,8 @@ function LoginScreen({navigation}) {
                   />
                   <TextInput
                     style={styles.input}
-                    onChangeText={setUser}
-                    value={user}
+                    onChangeText={setEmail}
+                    value={email}
                     placeholder="Email"
                     placeholderTextColor="white"
                   />
@@ -55,8 +60,9 @@ function LoginScreen({navigation}) {
                   />
                   <TextInput
                     style={styles.input}
-                    onChangeText={setUser}
-                    value={user}
+                    secureTextEntry={true}
+                    onChangeText={setPassword}
+                    value={password}
                     placeholder="Password"
                     placeholderTextColor="white"
                   />
@@ -68,15 +74,15 @@ function LoginScreen({navigation}) {
                     textColor="grey"
                     mode="contained"
                     onPress={() => console.log('Pressed')}>
-                    Create
+                    LOGIN
                   </Button>
                 </View>
 
                 <View style={styles.textSubHeadContainer}>
-                  <Text style={styles.textSubHead}>Already Have Account?</Text>
+                  <Text style={styles.textSubHead}>Don’t have an account?</Text>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.textLoginNow}>Login Now</Text>
+                    onPress={() => navigation.navigate('Register')}>
+                    <Text style={styles.textLoginNow}>Sign Up</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -94,8 +100,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffe5',
     height: 1000,
   },
+  containerLogo: {
+    marginTop: 40,
+    alignItems: 'center',
+  },
   textHeadContainer: {
-    marginTop: 70,
+    marginTop: 20,
     alignItems: 'center',
   },
   textHead: {
