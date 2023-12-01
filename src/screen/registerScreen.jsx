@@ -12,6 +12,10 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import IconUser from 'react-native-vector-icons/FontAwesome5';
+import IconMail from 'react-native-vector-icons/AntDesign';
+import IconPass from 'react-native-vector-icons/Feather';
+import IconPhone from 'react-native-vector-icons/Entypo';
 function RegisterScreen() {
   const [user, setUser] = React.useState('');
   return (
@@ -29,7 +33,7 @@ function RegisterScreen() {
 
         <View style={styles.containerFormInput}>
           <View style={styles.containerInput}>
-            <Icon
+            <IconUser
               style={styles.iconStyle}
               name="user"
               size={20}
@@ -44,9 +48,9 @@ function RegisterScreen() {
             />
           </View>
           <View style={styles.containerInput}>
-            <Icon
+            <IconMail
               style={styles.iconStyle}
-              name="user"
+              name="mail"
               size={20}
               color="white"
             />
@@ -54,14 +58,14 @@ function RegisterScreen() {
               style={styles.input}
               onChangeText={setUser}
               value={user}
-              placeholder="Name"
+              placeholder="Email"
               placeholderTextColor="white"
             />
           </View>
           <View style={styles.containerInput}>
-            <Icon
+            <IconPhone
               style={styles.iconStyle}
-              name="user"
+              name="phone"
               size={20}
               color="white"
             />
@@ -69,14 +73,30 @@ function RegisterScreen() {
               style={styles.input}
               onChangeText={setUser}
               value={user}
-              placeholder="Name"
+              placeholder="Phone Number"
+              placeholderTextColor="white"
+              keyboardType="numeric"
+            />
+          </View>
+          <View style={styles.containerInput}>
+            <IconPass
+              style={styles.iconStyle}
+              name="lock"
+              size={20}
+              color="white"
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={setUser}
+              value={user}
+              placeholder="Password"
               placeholderTextColor="white"
             />
           </View>
           <View style={styles.containerInput}>
-            <Icon
+            <IconPass
               style={styles.iconStyle}
-              name="user"
+              name="unlock"
               size={20}
               color="white"
             />
@@ -84,22 +104,7 @@ function RegisterScreen() {
               style={styles.input}
               onChangeText={setUser}
               value={user}
-              placeholder="Name"
-              placeholderTextColor="white"
-            />
-          </View>
-          <View style={styles.containerInput}>
-            <Icon
-              style={styles.iconStyle}
-              name="user"
-              size={20}
-              color="white"
-            />
-            <TextInput
-              style={styles.input}
-              onChangeText={setUser}
-              value={user}
-              placeholder="Name"
+              placeholder="Confirm Password"
               placeholderTextColor="white"
             />
           </View>
@@ -116,6 +121,7 @@ const styles = StyleSheet.create({
     height: 1000,
   },
   textHeadContainer: {
+    marginTop: 50,
     alignItems: 'center',
   },
   textHead: {
