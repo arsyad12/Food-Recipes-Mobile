@@ -67,7 +67,7 @@ function DetailRecipes({navigation, route}) {
                     ? {
                         paddingBottom: 4,
                         color: 'black',
-                        borderBottomColor: 'yellow',
+                        borderBottomColor: 'orange',
                         borderBottomWidth: 3,
                       }
                     : {color: 'grey'}),
@@ -82,7 +82,7 @@ function DetailRecipes({navigation, route}) {
                     ? {
                         paddingBottom: 4,
                         color: 'black',
-                        borderBottomColor: 'yellow',
+                        borderBottomColor: 'orange',
                         borderBottomWidth: 3,
                       }
                     : {color: 'grey'}),
@@ -154,18 +154,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flexDirection: 'row',
     padding: 15,
-  },
-
-  containerLine: {
-    position: 'absolute',
-    paddingLeft: 30,
-    paddingTop: 20,
-  },
-
-  containerLine2: {
-    position: 'absolute',
-    paddingLeft: 130,
-    paddingTop: 20,
   },
 
   containerVidImg: {

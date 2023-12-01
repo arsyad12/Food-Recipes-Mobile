@@ -236,6 +236,7 @@ const styles = StyleSheet.create({
   popularRecipesImg: {
     height: 64,
     width: 64,
+    borderRadius: 10,
   },
 
   textPopularRecipes: {
