@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
-import {PaperProvider, Button} from 'react-native-paper';
+import {PaperProvider, Button, TextInput} from 'react-native-paper';
 import {
   SafeAreaView,
   ScrollView,
@@ -19,6 +19,8 @@ function DetailRecipes({navigation, route}) {
   const {image, title, ingredients, video} = route.params;
 
   const [lineChoice, setLineChoice] = React.useState('ingredients');
+
+  const [comment, setComment] = React.useState('');
 
   return (
     <PaperProvider>
@@ -123,6 +125,34 @@ function DetailRecipes({navigation, route}) {
                 </>
               ) : null}
             </View>
+
+            <View style={styles.containerTextArea}>
+              <TextInput
+                style={{
+                  borderRadius: 20,
+                  backgroundColor: 'orange',
+                }}
+                placeholder="Comment :"
+                placeholderTextColor="white"
+                multiline={true}
+                numberOfLines={7}
+                textColor="white"
+                mode={'outlined'}
+                outlineColor="orange"
+                onChangeText={setComment}
+                value={comment}
+              />
+            </View>
+
+            <View style={styles.containerButton}>
+              <Button
+                style={styles.button}
+                textColor="grey"
+                mode="contained"
+                onPress={() => console.log('Pressed')}>
+                Post Comment
+              </Button>
+            </View>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -180,6 +210,26 @@ const styles = StyleSheet.create({
   textIngredient: {
     paddingRight: 20,
     textAlign: 'justify',
+  },
+
+  containerTextArea: {
+    position: 'absolute',
+    marginLeft: 15,
+    marginTop: 150,
+    width: 360,
+  },
+
+  containerButton: {
+    position: 'absolute',
+    alignContent: 'center',
+    marginLeft: 15,
+    marginTop: 300,
+    width: 360,
+  },
+
+  button: {
+    borderRadius: 5,
+    backgroundColor: '#ffdd56',
   },
 });
 

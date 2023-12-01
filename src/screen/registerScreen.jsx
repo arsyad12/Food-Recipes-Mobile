@@ -7,25 +7,23 @@ import {
   ScrollView, //berguna untuk membuat seuatu section bisa di scrol
   StyleSheet, //berguna untuk styling di react native
   View, //view ini fungsinya adalah DIV di react native dan untuk kontennya dimasukan kedalam section
-  Image,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+
 import IconUser from 'react-native-vector-icons/FontAwesome5';
 import IconMail from 'react-native-vector-icons/AntDesign';
 import IconPass from 'react-native-vector-icons/Feather';
 import IconPhone from 'react-native-vector-icons/Entypo';
+
 function RegisterScreen({navigation}) {
   const [user, setUser] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [pass, setPass] = React.useState('');
   const [confirm, setConfirm] = React.useState('');
-  console.log(user);
-  console.log(email);
-  console.log(phone);
-  console.log(pass);
-  console.log(confirm);
+
+  const registerHandler = () => {};
   return (
     <PaperProvider>
       <SafeAreaView>
@@ -58,6 +56,7 @@ function RegisterScreen({navigation}) {
                     placeholderTextColor="white"
                   />
                 </View>
+
                 <View style={styles.containerInput}>
                   <IconMail
                     style={styles.iconStyle}
@@ -73,6 +72,7 @@ function RegisterScreen({navigation}) {
                     placeholderTextColor="white"
                   />
                 </View>
+
                 <View style={styles.containerInput}>
                   <IconPhone
                     style={styles.iconStyle}
@@ -89,6 +89,7 @@ function RegisterScreen({navigation}) {
                     keyboardType="numeric"
                   />
                 </View>
+
                 <View style={styles.containerInput}>
                   <IconPass
                     style={styles.iconStyle}
@@ -104,6 +105,7 @@ function RegisterScreen({navigation}) {
                     placeholderTextColor="white"
                   />
                 </View>
+
                 <View style={styles.containerInput}>
                   <IconPass
                     style={styles.iconStyle}
@@ -125,7 +127,7 @@ function RegisterScreen({navigation}) {
                     style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
                     textColor="grey"
                     mode="contained"
-                    onPress={() => console.log('Pressed')}>
+                    onPress={() => registerHandler()}>
                     Create
                   </Button>
                 </View>
