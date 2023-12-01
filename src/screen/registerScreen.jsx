@@ -17,6 +17,15 @@ import IconPass from 'react-native-vector-icons/Feather';
 import IconPhone from 'react-native-vector-icons/Entypo';
 function RegisterScreen({navigation}) {
   const [user, setUser] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [phone, setPhone] = React.useState('');
+  const [pass, setPass] = React.useState('');
+  const [confirm, setConfirm] = React.useState('');
+  console.log(user);
+  console.log(email);
+  console.log(phone);
+  console.log(pass);
+  console.log(confirm);
   return (
     <PaperProvider>
       <SafeAreaView>
@@ -58,8 +67,8 @@ function RegisterScreen({navigation}) {
                   />
                   <TextInput
                     style={styles.input}
-                    onChangeText={setUser}
-                    value={user}
+                    onChangeText={setEmail}
+                    value={email}
                     placeholder="Email"
                     placeholderTextColor="white"
                   />
@@ -73,8 +82,8 @@ function RegisterScreen({navigation}) {
                   />
                   <TextInput
                     style={styles.input}
-                    onChangeText={setUser}
-                    value={user}
+                    onChangeText={setPhone}
+                    value={phone}
                     placeholder="Phone Number"
                     placeholderTextColor="white"
                     keyboardType="numeric"
@@ -89,8 +98,8 @@ function RegisterScreen({navigation}) {
                   />
                   <TextInput
                     style={styles.input}
-                    onChangeText={setUser}
-                    value={user}
+                    onChangeText={setPass}
+                    value={pass}
                     placeholder="Password"
                     placeholderTextColor="white"
                   />
@@ -104,8 +113,8 @@ function RegisterScreen({navigation}) {
                   />
                   <TextInput
                     style={styles.input}
-                    onChangeText={setUser}
-                    value={user}
+                    onChangeText={setConfirm}
+                    value={confirm}
                     placeholder="Confirm Password"
                     placeholderTextColor="white"
                   />
