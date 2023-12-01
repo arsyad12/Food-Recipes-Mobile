@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text} from 'react-native-paper';
+import {Text, Button, PaperProvider} from 'react-native-paper';
 import {
   //   ini adalah tag bawaan dar react native
   SafeAreaView, //brguna untuk Meyesuaikan ukuran layar agar design tidak rusak, contohnya saat HP mempunyai Poni
@@ -11,106 +11,129 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import IconUser from 'react-native-vector-icons/FontAwesome5';
 import IconMail from 'react-native-vector-icons/AntDesign';
 import IconPass from 'react-native-vector-icons/Feather';
 import IconPhone from 'react-native-vector-icons/Entypo';
-function RegisterScreen() {
+function RegisterScreen({navigation}) {
   const [user, setUser] = React.useState('');
   return (
-    <View style={{backgroundColor: '#ffffe5'}}>
-      <View style={styles.container}>
-        <View style={styles.textHeadContainer}>
-          <Text style={styles.textHead}>Let’s Get Started !</Text>
-        </View>
+    <PaperProvider>
+      <SafeAreaView>
+        <ScrollView>
+          <View style={{backgroundColor: '#ffffe5'}}>
+            <View style={styles.container}>
+              <View style={styles.textHeadContainer}>
+                <Text style={styles.textHead}>Let’s Get Started !</Text>
+              </View>
 
-        <View style={styles.textSubHeadContainer}>
-          <Text style={styles.textSubHead}>
-            Create new account to access all feautures
-          </Text>
-        </View>
+              <View style={styles.textSubHeadContainer}>
+                <Text style={styles.textSubHead}>
+                  Create new account to access all feautures
+                </Text>
+              </View>
 
-        <View style={styles.containerFormInput}>
-          <View style={styles.containerInput}>
-            <IconUser
-              style={styles.iconStyle}
-              name="user"
-              size={20}
-              color="white"
-            />
-            <TextInput
-              style={styles.input}
-              onChangeText={setUser}
-              value={user}
-              placeholder="Name"
-              placeholderTextColor="white"
-            />
+              <View style={styles.containerFormInput}>
+                <View style={styles.containerInput}>
+                  <IconUser
+                    style={styles.iconStyle}
+                    name="user"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setUser}
+                    value={user}
+                    placeholder="Name"
+                    placeholderTextColor="white"
+                  />
+                </View>
+                <View style={styles.containerInput}>
+                  <IconMail
+                    style={styles.iconStyle}
+                    name="mail"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setUser}
+                    value={user}
+                    placeholder="Email"
+                    placeholderTextColor="white"
+                  />
+                </View>
+                <View style={styles.containerInput}>
+                  <IconPhone
+                    style={styles.iconStyle}
+                    name="phone"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setUser}
+                    value={user}
+                    placeholder="Phone Number"
+                    placeholderTextColor="white"
+                    keyboardType="numeric"
+                  />
+                </View>
+                <View style={styles.containerInput}>
+                  <IconPass
+                    style={styles.iconStyle}
+                    name="lock"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setUser}
+                    value={user}
+                    placeholder="Password"
+                    placeholderTextColor="white"
+                  />
+                </View>
+                <View style={styles.containerInput}>
+                  <IconPass
+                    style={styles.iconStyle}
+                    name="unlock"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setUser}
+                    value={user}
+                    placeholder="Confirm Password"
+                    placeholderTextColor="white"
+                  />
+                </View>
+
+                <View style={styles.containerBtnCreate}>
+                  <Button
+                    style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
+                    textColor="grey"
+                    mode="contained"
+                    onPress={() => console.log('Pressed')}>
+                    Create
+                  </Button>
+                </View>
+
+                <View style={styles.textSubHeadContainer}>
+                  <Text style={styles.textSubHead}>Already Have Account?</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.textLoginNow}>Login Now</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
           </View>
-          <View style={styles.containerInput}>
-            <IconMail
-              style={styles.iconStyle}
-              name="mail"
-              size={20}
-              color="white"
-            />
-            <TextInput
-              style={styles.input}
-              onChangeText={setUser}
-              value={user}
-              placeholder="Email"
-              placeholderTextColor="white"
-            />
-          </View>
-          <View style={styles.containerInput}>
-            <IconPhone
-              style={styles.iconStyle}
-              name="phone"
-              size={20}
-              color="white"
-            />
-            <TextInput
-              style={styles.input}
-              onChangeText={setUser}
-              value={user}
-              placeholder="Phone Number"
-              placeholderTextColor="white"
-              keyboardType="numeric"
-            />
-          </View>
-          <View style={styles.containerInput}>
-            <IconPass
-              style={styles.iconStyle}
-              name="lock"
-              size={20}
-              color="white"
-            />
-            <TextInput
-              style={styles.input}
-              onChangeText={setUser}
-              value={user}
-              placeholder="Password"
-              placeholderTextColor="white"
-            />
-          </View>
-          <View style={styles.containerInput}>
-            <IconPass
-              style={styles.iconStyle}
-              name="unlock"
-              size={20}
-              color="white"
-            />
-            <TextInput
-              style={styles.input}
-              onChangeText={setUser}
-              value={user}
-              placeholder="Confirm Password"
-              placeholderTextColor="white"
-            />
-          </View>
-        </View>
-      </View>
-    </View>
+        </ScrollView>
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
 
@@ -121,7 +144,7 @@ const styles = StyleSheet.create({
     height: 1000,
   },
   textHeadContainer: {
-    marginTop: 50,
+    marginTop: 70,
     alignItems: 'center',
   },
   textHead: {
@@ -130,7 +153,11 @@ const styles = StyleSheet.create({
     color: 'orange',
   },
   textSubHeadContainer: {
+    marginTop: 10,
     alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    gap: 6,
   },
   textSubHead: {
     fontSize: 12,
@@ -138,8 +165,14 @@ const styles = StyleSheet.create({
     color: 'grey',
   },
 
+  textLoginNow: {
+    fontSize: 12,
+    fontWeight: 400,
+    color: 'orange',
+  },
+
   containerFormInput: {
-    marginTop: 20,
+    marginTop: 30,
   },
 
   containerInput: {
@@ -164,6 +197,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
     color: 'white',
+  },
+  containerBtnCreate: {
+    marginTop: 20,
   },
 });
 
