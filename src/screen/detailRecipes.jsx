@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 
@@ -13,8 +14,36 @@ import {
   Linking, //untuk redirect ke link url
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import firestore from '@react-native-firebase/firestore';
 
 function DetailRecipes({navigation, route}) {
+
+  const [listComment,setListComment] = React.useState([]);
+
+  React.useEffect(() => {
+    //testing connection to firestore
+    //invoke function
+    // (async () => {
+    //   const comment = await firestore().collection('comment').doc();
+    //   console.log(comment);
+    // })();
+
+//get data dari fire base, dan masukin danta ke state dalam bentuk array of object
+
+    firestore()
+    .collection('comment')
+    .get()
+    .then(querySnapshot => {
+      let tempData = [];
+      querySnapshot.forEach((documentSnapshot) => {
+        tempData.push(documentSnapshot);
+      });
+      setListComment(tempData);
+    });
+
+  }, []);
+console.log(listComment);
+
   //route berguna untuk menampung data yang dikirim dari homscreen saat navigasi
   const {image, title, ingredients, video} = route.params;
 
@@ -153,6 +182,28 @@ function DetailRecipes({navigation, route}) {
                 Post Comment
               </Button>
             </View>
+
+            <View style={styles.containerTextComent}>
+              <Text style={{color: '#666666', fontSize: 12, fontWeight: 400}}>
+                Comment :
+              </Text>
+            </View>
+{listComment.map((item,key) => (
+            <View key={key} style={styles.containerComment}>
+              <View key={key}>
+                <Image
+                  style={styles.profileImage}
+                  source={{uri:item?._data?.photo}}
+                  height={50}
+                  width={50}
+                />
+              </View>
+              <View>
+                <Text style={{color: 'orange', paddingTop: 5}}>{item._data?.name}</Text>
+                <Text style={{color: 'black', fontSize: 12}}>{item._data?.comment}</Text>
+              </View>
+            </View>
+            ))}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -230,6 +281,23 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 5,
     backgroundColor: '#ffdd56',
+  },
+
+  containerTextComent: {
+    position: 'absolute',
+    marginLeft: 15,
+    marginTop: 380,
+  },
+
+  containerComment: {
+    marginLeft: 15,
+    flexDirection: 'row',
+    gap: 20,
+    // backgroundColor:'#ffffe5',
+  },
+
+  profileImage: {
+    borderRadius: 50,
   },
 });
 
