@@ -16,6 +16,8 @@ import IconMail from 'react-native-vector-icons/AntDesign';
 import IconPass from 'react-native-vector-icons/Feather';
 import IconPhone from 'react-native-vector-icons/Entypo';
 
+import auth from '@react-native-firebase/auth'; //import auth
+
 function RegisterScreen({navigation}) {
   const [user, setUser] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -23,7 +25,27 @@ function RegisterScreen({navigation}) {
   const [pass, setPass] = React.useState('');
   const [confirm, setConfirm] = React.useState('');
 
-  const registerHandler = () => {};
+  const registerHandler = () => {
+    auth()
+      .createUserWithEmailAndPassword(
+        'jane.doe@example.com',
+        'SuperSecretPassword!',
+      )
+      .then(() => {
+        console.log('User account created & signed in!');
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
+      });
+  };
   return (
     <PaperProvider>
       <SafeAreaView>

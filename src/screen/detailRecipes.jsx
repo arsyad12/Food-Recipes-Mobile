@@ -29,30 +29,53 @@ function DetailRecipes({navigation, route}) {
 
   const [comment, setComment] = React.useState('');
 
-  React.useEffect(() => {
-    //testing connection to firestore
-    //invoke function
-    // (async () => {
-    //   const comment = await firestore().collection('comment').doc();
-    //   console.log(comment);
-    // })();
 
-//get data dari fire base, dan masukin danta ke state dalam bentuk array of object
-
-    firestore()
-    .collection('comment')
-    .where('slugRecipes', '==', slug) //filtering data
-    .get()
-    .then(querySnapshot => {
-      let tempData = [];
-      querySnapshot.forEach((documentSnapshot) => {
-        tempData.push(documentSnapshot);
-      });
-      setListComment(tempData);//setdata nya harus diluar foreach, biar kedetect
+const getComment = ()=>{
+  firestore()
+  .collection('comment')
+  //filtering data antara yang didapet dari parameter dengan yang di firestore
+  .where('slugRecipes', '==', slug)
+  .get()
+  .then(querySnapshot => {
+    let tempData = [];
+    querySnapshot.forEach((documentSnapshot) => {
+      tempData.push(documentSnapshot);
     });
+    setListComment(tempData);//setdata nya harus diluar foreach, biar kedetect
+  });
+};
 
-  }, []);
 console.log(listComment);
+
+
+React.useEffect(() => {
+  //testing connection to firestore
+  //invoke function
+  // (async () => {
+  //   const comment = await firestore().collection('comment').doc();
+  //   console.log(comment);
+  // })();
+getComment();
+
+}, []);
+
+
+const btnCommentHandler = ()=>{
+
+firestore()
+.collection('comment')
+.add({
+  comment : comment, //make state comment
+  name: 'DummyUser', //manuall dulu karena belom ada fitur login
+  photo:'https://i.pravatar.cc/300', //manuall dulu karena belom ada fitur login
+  slugRecipes : slug,
+  created_at: new Date().getTime(),
+})
+.then(() => {
+  console.log('Comment added!');
+  getComment();
+});
+};
 
   return (
     <PaperProvider>
@@ -181,7 +204,7 @@ console.log(listComment);
                 style={styles.button}
                 textColor="grey"
                 mode="contained"
-                onPress={() => console.log('Pressed')}>
+                onPress={() =>{btnCommentHandler();}}>
                 Post Comment
               </Button>
             </View>
@@ -191,7 +214,8 @@ console.log(listComment);
                 Comment :
               </Text>
             </View>
-{listComment.map((item,key) => (
+{/* sord data dari object listcoment yang parentnya _data */}
+{listComment.sort((newData, oldData) =>oldData._data?.created_at - newData._data?.created_at).map((item,key) => (
   <View key={key} style={{ backgroundColor:'#ffffe5'}}>
             <View key={key} style={styles.containerComment}>
               <View key={key}>
