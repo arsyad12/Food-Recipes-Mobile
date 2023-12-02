@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
@@ -20,6 +21,14 @@ function DetailRecipes({navigation, route}) {
 
   const [listComment,setListComment] = React.useState([]);
 
+  //route berguna untuk menampung data yang dikirim dari homscreen saat navigasi
+  //pastikan nama destrukturing sama dengan nama di json
+  const {image, title, ingredients, video,slug} = route.params;
+
+  const [lineChoice, setLineChoice] = React.useState('ingredients');
+
+  const [comment, setComment] = React.useState('');
+
   React.useEffect(() => {
     //testing connection to firestore
     //invoke function
@@ -32,24 +41,18 @@ function DetailRecipes({navigation, route}) {
 
     firestore()
     .collection('comment')
+    .where('slugRecipes', '==', slug) //filtering data
     .get()
     .then(querySnapshot => {
       let tempData = [];
       querySnapshot.forEach((documentSnapshot) => {
         tempData.push(documentSnapshot);
       });
-      setListComment(tempData);
+      setListComment(tempData);//setdata nya harus diluar foreach, biar kedetect
     });
 
   }, []);
 console.log(listComment);
-
-  //route berguna untuk menampung data yang dikirim dari homscreen saat navigasi
-  const {image, title, ingredients, video} = route.params;
-
-  const [lineChoice, setLineChoice] = React.useState('ingredients');
-
-  const [comment, setComment] = React.useState('');
 
   return (
     <PaperProvider>
@@ -189,6 +192,7 @@ console.log(listComment);
               </Text>
             </View>
 {listComment.map((item,key) => (
+  <View key={key} style={{ backgroundColor:'#ffffe5'}}>
             <View key={key} style={styles.containerComment}>
               <View key={key}>
                 <Image
@@ -201,6 +205,7 @@ console.log(listComment);
               <View>
                 <Text style={{color: 'orange', paddingTop: 5}}>{item._data?.name}</Text>
                 <Text style={{color: 'black', fontSize: 12}}>{item._data?.comment}</Text>
+              </View>
               </View>
             </View>
             ))}
@@ -290,10 +295,12 @@ const styles = StyleSheet.create({
   },
 
   containerComment: {
+    width:360,
     marginLeft: 15,
+    marginBottom:15,
     flexDirection: 'row',
     gap: 20,
-    // backgroundColor:'#ffffe5',
+    top:-80,
   },
 
   profileImage: {
