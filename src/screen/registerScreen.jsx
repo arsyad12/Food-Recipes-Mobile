@@ -39,7 +39,7 @@ function RegisterScreen({navigation}) {
             phone: phone,
           })
           .then(() => {
-            console.log('Register Succes!');
+            console.log('Data user has saved!');
           });
       })
       .catch(error => {

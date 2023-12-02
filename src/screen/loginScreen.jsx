@@ -15,32 +15,52 @@ import IconMail from 'react-native-vector-icons/AntDesign';
 import IconPass from 'react-native-vector-icons/Feather';
 
 import auth from '@react-native-firebase/auth'; //import auth
+import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LoginScreen({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [user, setUser] = React.useState('');
 
   const loginHandler = () => {
     auth()
-      .signInWithEmailAndPassword(
-        'jane.doe@example.com',
-        'SuperSecretPassword!',
-      )
-      .then(res => {
-        console.log(res);
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        console.log('Login Succes!');
+        getUser();
+        navigation.navigate('Home');
       })
       .catch(error => {
-        // if (error.code === 'auth/email-already-in-use') {
-        //   console.log('That email address is already in use!');
-        // }
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
 
-        // if (error.code === 'auth/invalid-email') {
-        //   console.log('That email address is invalid!');
-        // }
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
 
         console.error(error);
       });
   };
+
+  const getUser = () => {
+    firestore()
+      .collection('user')
+      //filtering data antara yang didapet dari parameter dengan yang di firestore
+      .where('email', '==', email)
+      .get()
+      .then(async querySnapshot => {
+        let tempData = [];
+        querySnapshot.forEach(documentSnapshot => {
+          tempData.push(documentSnapshot);
+        });
+        setUser(tempData); //setdata nya harus diluar foreach, biar kedetect
+        await AsyncStorage.setItem('user', JSON.stringify(tempData[0]._data));
+      });
+  };
+
+  console.log(user);
 
   return (
     <PaperProvider>

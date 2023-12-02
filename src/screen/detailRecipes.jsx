@@ -2,8 +2,9 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {PaperProvider, Button, TextInput} from 'react-native-paper';
+import {PaperProvider, Button, TextInput, Snackbar} from 'react-native-paper';
 import {
   SafeAreaView,
   ScrollView,
@@ -28,7 +29,11 @@ function DetailRecipes({navigation, route}) {
   const [lineChoice, setLineChoice] = React.useState('ingredients');
 
   const [comment, setComment] = React.useState('');
+  const [visible, setVisible] = React.useState(false);
+  const [messageSnackbar,setMessageSnackbar] = React.useState('');
+  const [snackbarBg,setSnackbarBg] = React.useState('');
 
+  const onDismissSnackBar = () => setVisible(false);
 
 const getComment = ()=>{
   firestore()
@@ -60,13 +65,15 @@ getComment();
 }, []);
 
 
-const btnCommentHandler = ()=>{
-
-firestore()
+const btnCommentHandler = async()=>{
+const user = await AsyncStorage.getItem('user');
+console.log(user);
+if (user) {
+  firestore()
 .collection('comment')
 .add({
   comment : comment, //make state comment
-  name: 'DummyUser', //manuall dulu karena belom ada fitur login
+  name: JSON.parse(user).username, //manuall dulu karena belom ada fitur login
   photo:'https://i.pravatar.cc/300', //manuall dulu karena belom ada fitur login
   slugRecipes : slug,
   created_at: new Date().getTime(),
@@ -75,9 +82,34 @@ firestore()
   console.log('Comment added!');
   getComment();
 });
+} else {
+  console.log('Login first');
+  setVisible(true);
+  setMessageSnackbar('Login First');
+  setSnackbarBg('black');
+  setTimeout(() => {
+    navigation.navigate('Login');
+  }, 3000);
+}
+
 };
 
   return (
+    <>
+    <Snackbar
+    wrapperStyle={{top:0,position:'absolute',zIndex:99999}}
+    style={{backgroundColor:snackbarBg}}
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'X',
+          onPress: () => {
+            onDismissSnackBar();
+          },
+        }}>
+       <Text style={{color:'white'}}>{messageSnackbar}</Text>
+      </Snackbar>
+
     <PaperProvider>
       <SafeAreaView>
         <ScrollView>
@@ -237,6 +269,7 @@ firestore()
         </ScrollView>
       </SafeAreaView>
     </PaperProvider>
+    </>
   );
 }
 
