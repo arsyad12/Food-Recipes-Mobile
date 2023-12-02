@@ -13,9 +13,35 @@ import {
 } from 'react-native';
 import IconMail from 'react-native-vector-icons/AntDesign';
 import IconPass from 'react-native-vector-icons/Feather';
+
+import auth from '@react-native-firebase/auth'; //import auth
+
 function LoginScreen({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+
+  const loginHandler = () => {
+    auth()
+      .signInWithEmailAndPassword(
+        'jane.doe@example.com',
+        'SuperSecretPassword!',
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        // if (error.code === 'auth/email-already-in-use') {
+        //   console.log('That email address is already in use!');
+        // }
+
+        // if (error.code === 'auth/invalid-email') {
+        //   console.log('That email address is invalid!');
+        // }
+
+        console.error(error);
+      });
+  };
+
   return (
     <PaperProvider>
       <SafeAreaView>
@@ -74,7 +100,9 @@ function LoginScreen({navigation}) {
                     style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
                     textColor="grey"
                     mode="contained"
-                    onPress={() => console.log('Pressed')}>
+                    onPress={() => {
+                      loginHandler();
+                    }}>
                     LOGIN
                   </Button>
                 </View>

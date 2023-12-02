@@ -17,6 +17,7 @@ import IconPass from 'react-native-vector-icons/Feather';
 import IconPhone from 'react-native-vector-icons/Entypo';
 
 import auth from '@react-native-firebase/auth'; //import auth
+import firestore from '@react-native-firebase/firestore';
 
 function RegisterScreen({navigation}) {
   const [user, setUser] = React.useState('');
@@ -27,12 +28,19 @@ function RegisterScreen({navigation}) {
 
   const registerHandler = () => {
     auth()
-      .createUserWithEmailAndPassword(
-        'jane.doe@example.com',
-        'SuperSecretPassword!',
-      )
+      .createUserWithEmailAndPassword(email, pass)
       .then(() => {
-        console.log('User account created & signed in!');
+        console.log('Register Succes!');
+        firestore()
+          .collection('user')
+          .add({
+            username: user, //make state comment
+            email: email, //manuall dulu karena belom ada fitur login
+            phone: phone,
+          })
+          .then(() => {
+            console.log('Register Succes!');
+          });
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
