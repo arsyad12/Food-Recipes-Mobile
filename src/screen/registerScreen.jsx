@@ -17,7 +17,7 @@ import IconPass from 'react-native-vector-icons/Feather';
 import IconPhone from 'react-native-vector-icons/Entypo';
 
 import auth from '@react-native-firebase/auth'; //import auth
-import firestore from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore'; //import firestore
 
 function RegisterScreen({navigation}) {
   const [user, setUser] = React.useState('');
@@ -41,7 +41,7 @@ function RegisterScreen({navigation}) {
       setVisible(true);
       setMessageSnackbar('Phone cannot be empty');
       setSnackbarBg('red');
-    } else if (pass != confirm) {
+    } else if (pass !== confirm) {
       setVisible(true);
       setMessageSnackbar('Your Confirm Password is Not Match');
       setSnackbarBg('red');
