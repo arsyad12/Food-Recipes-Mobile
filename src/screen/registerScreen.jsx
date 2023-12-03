@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, Button, PaperProvider} from 'react-native-paper';
+import {Text, Button, PaperProvider, Snackbar} from 'react-native-paper';
 import {
   //   ini adalah tag bawaan dar react native
   SafeAreaView, //brguna untuk Meyesuaikan ukuran layar agar design tidak rusak, contohnya saat HP mempunyai Poni
@@ -26,155 +26,207 @@ function RegisterScreen({navigation}) {
   const [pass, setPass] = React.useState('');
   const [confirm, setConfirm] = React.useState('');
 
+  //snackbar state
+  const [visible, setVisible] = React.useState(false);
+  const [messageSnackbar, setMessageSnackbar] = React.useState('');
+  const [snackbarBg, setSnackbarBg] = React.useState('');
+  const onDismissSnackBar = () => setVisible(false);
+
   const registerHandler = () => {
-    auth()
-      .createUserWithEmailAndPassword(email, pass)
-      .then(() => {
-        console.log('Register Succes!');
-        firestore()
-          .collection('user')
-          .add({
-            username: user, //make state comment
-            email: email, //manuall dulu karena belom ada fitur login
-            phone: phone,
-          })
-          .then(() => {
-            console.log('Data user has saved!');
-          });
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
+    if (!user) {
+      setVisible(true);
+      setMessageSnackbar('Name cannot be empty');
+      setSnackbarBg('red');
+    } else if (!phone) {
+      setVisible(true);
+      setMessageSnackbar('Phone cannot be empty');
+      setSnackbarBg('red');
+    } else if (pass != confirm) {
+      setVisible(true);
+      setMessageSnackbar('Your Confirm Password is Not Match');
+      setSnackbarBg('red');
+    } else {
+      auth()
+        .createUserWithEmailAndPassword(email, pass)
+        .then(() => {
+          setVisible(true);
+          setMessageSnackbar('Register Succes!');
+          setSnackbarBg('green');
+          firestore()
+            .collection('user')
+            .add({
+              username: user, //make state comment
+              email: email, //manuall dulu karena belom ada fitur login
+              phone: phone,
+            })
+            .then(() => {
+              setVisible(true);
+              setMessageSnackbar(
+                'Data user has saved!, Redirect to Login Page...',
+              );
+              setSnackbarBg('green');
 
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
+              setTimeout(() => {
+                navigation.navigate('Login');
+              }, 2000);
+            });
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            setVisible(true);
+            setMessageSnackbar('That email address is already in use!');
+            setSnackbarBg('red');
+          }
 
-        console.error(error);
-      });
+          if (error.code === 'auth/invalid-email') {
+            setVisible(true);
+            setMessageSnackbar('That email address is invalid Format!');
+            setSnackbarBg('red');
+          }
+
+          // console.error(error);
+        });
+    }
   };
   return (
-    <PaperProvider>
-      <SafeAreaView>
-        <ScrollView>
-          <View style={{backgroundColor: '#ffffe5'}}>
-            <View style={styles.container}>
-              <View style={styles.textHeadContainer}>
-                <Text style={styles.textHead}>Let’s Get Started !</Text>
-              </View>
+    <>
+      <Snackbar
+        wrapperStyle={{top: 0, position: 'absolute', zIndex: 99999}}
+        style={{backgroundColor: snackbarBg}}
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'X',
+          onPress: () => {
+            onDismissSnackBar();
+          },
+        }}>
+        <Text style={{color: 'white'}}>{messageSnackbar}</Text>
+      </Snackbar>
 
-              <View style={styles.textSubHeadContainer}>
-                <Text style={styles.textSubHead}>
-                  Create new account to access all feautures
-                </Text>
-              </View>
-
-              <View style={styles.containerFormInput}>
-                <View style={styles.containerInput}>
-                  <IconUser
-                    style={styles.iconStyle}
-                    name="user"
-                    size={20}
-                    color="white"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={setUser}
-                    value={user}
-                    placeholder="Name"
-                    placeholderTextColor="white"
-                  />
-                </View>
-
-                <View style={styles.containerInput}>
-                  <IconMail
-                    style={styles.iconStyle}
-                    name="mail"
-                    size={20}
-                    color="white"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={setEmail}
-                    value={email}
-                    placeholder="Email"
-                    placeholderTextColor="white"
-                  />
-                </View>
-
-                <View style={styles.containerInput}>
-                  <IconPhone
-                    style={styles.iconStyle}
-                    name="phone"
-                    size={20}
-                    color="white"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={setPhone}
-                    value={phone}
-                    placeholder="Phone Number"
-                    placeholderTextColor="white"
-                    keyboardType="numeric"
-                  />
-                </View>
-
-                <View style={styles.containerInput}>
-                  <IconPass
-                    style={styles.iconStyle}
-                    name="lock"
-                    size={20}
-                    color="white"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={setPass}
-                    value={pass}
-                    placeholder="Password"
-                    placeholderTextColor="white"
-                  />
-                </View>
-
-                <View style={styles.containerInput}>
-                  <IconPass
-                    style={styles.iconStyle}
-                    name="unlock"
-                    size={20}
-                    color="white"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={setConfirm}
-                    value={confirm}
-                    placeholder="Confirm Password"
-                    placeholderTextColor="white"
-                  />
-                </View>
-
-                <View style={styles.containerBtnCreate}>
-                  <Button
-                    style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
-                    textColor="grey"
-                    mode="contained"
-                    onPress={() => registerHandler()}>
-                    Create
-                  </Button>
+      <PaperProvider>
+        <SafeAreaView>
+          <ScrollView>
+            <View style={{backgroundColor: '#ffffe5'}}>
+              <View style={styles.container}>
+                <View style={styles.textHeadContainer}>
+                  <Text style={styles.textHead}>Let’s Get Started !</Text>
                 </View>
 
                 <View style={styles.textSubHeadContainer}>
-                  <Text style={styles.textSubHead}>Already Have Account?</Text>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('Login')}>
-                    <Text style={styles.textLoginNow}>Login Now</Text>
-                  </TouchableOpacity>
+                  <Text style={styles.textSubHead}>
+                    Create new account to access all feautures
+                  </Text>
+                </View>
+
+                <View style={styles.containerFormInput}>
+                  <View style={styles.containerInput}>
+                    <IconUser
+                      style={styles.iconStyle}
+                      name="user"
+                      size={20}
+                      color="white"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={setUser}
+                      value={user}
+                      placeholder="Name"
+                      placeholderTextColor="white"
+                    />
+                  </View>
+
+                  <View style={styles.containerInput}>
+                    <IconMail
+                      style={styles.iconStyle}
+                      name="mail"
+                      size={20}
+                      color="white"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={setEmail}
+                      value={email}
+                      placeholder="Email"
+                      placeholderTextColor="white"
+                    />
+                  </View>
+
+                  <View style={styles.containerInput}>
+                    <IconPhone
+                      style={styles.iconStyle}
+                      name="phone"
+                      size={20}
+                      color="white"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={setPhone}
+                      value={phone}
+                      placeholder="Phone Number"
+                      placeholderTextColor="white"
+                      keyboardType="numeric"
+                    />
+                  </View>
+
+                  <View style={styles.containerInput}>
+                    <IconPass
+                      style={styles.iconStyle}
+                      name="lock"
+                      size={20}
+                      color="white"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={setPass}
+                      value={pass}
+                      placeholder="Password"
+                      placeholderTextColor="white"
+                    />
+                  </View>
+
+                  <View style={styles.containerInput}>
+                    <IconPass
+                      style={styles.iconStyle}
+                      name="unlock"
+                      size={20}
+                      color="white"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={setConfirm}
+                      value={confirm}
+                      placeholder="Confirm Password"
+                      placeholderTextColor="white"
+                    />
+                  </View>
+
+                  <View style={styles.containerBtnCreate}>
+                    <Button
+                      style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
+                      textColor="grey"
+                      mode="contained"
+                      onPress={() => registerHandler()}>
+                      Create
+                    </Button>
+                  </View>
+
+                  <View style={styles.textSubHeadContainer}>
+                    <Text style={styles.textSubHead}>
+                      Already Have Account?
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Login')}>
+                      <Text style={styles.textLoginNow}>Login Now</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </PaperProvider>
+          </ScrollView>
+        </SafeAreaView>
+      </PaperProvider>
+    </>
   );
 }
 
@@ -185,7 +237,7 @@ const styles = StyleSheet.create({
     height: 1000,
   },
   textHeadContainer: {
-    marginTop: 70,
+    marginTop: 120,
     alignItems: 'center',
   },
   textHead: {
