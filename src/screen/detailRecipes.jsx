@@ -81,14 +81,17 @@ if (user) {
   created_at: new Date().getTime(),
 })
 .then(() => {
-  console.log('Comment added!');
+  // console.log('Comment added!');
+  setVisible(true);
+  setMessageSnackbar('Comment added!');
+  setSnackbarBg('green');
   getComment();
 });
 } else {
-  console.log('Login first');
+  // console.log('Login first');
   setVisible(true);
   setMessageSnackbar('Login First');
-  setSnackbarBg('black');
+  setSnackbarBg('red');
   setTimeout(() => {
     navigation.navigate('Login');
   }, 3000);
