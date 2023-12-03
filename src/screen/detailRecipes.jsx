@@ -29,13 +29,15 @@ function DetailRecipes({navigation, route}) {
   const [lineChoice, setLineChoice] = React.useState('ingredients');
 
   const [comment, setComment] = React.useState('');
+
+  //snackbar state
   const [visible, setVisible] = React.useState(false);
   const [messageSnackbar,setMessageSnackbar] = React.useState('');
   const [snackbarBg,setSnackbarBg] = React.useState('');
-
   const onDismissSnackBar = () => setVisible(false);
 
 const getComment = ()=>{
+  // AsyncStorage.removeItem('user') delete local storage
   firestore()
   .collection('comment')
   //filtering data antara yang didapet dari parameter dengan yang di firestore

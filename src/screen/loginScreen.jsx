@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {Text, Button, PaperProvider} from 'react-native-paper';
+import {Text, Button, PaperProvider, Snackbar} from 'react-native-paper';
 import {
   //   ini adalah tag bawaan dar react native
   SafeAreaView, //brguna untuk Meyesuaikan ukuran layar agar design tidak rusak, contohnya saat HP mempunyai Poni
@@ -23,24 +23,37 @@ function LoginScreen({navigation}) {
   const [password, setPassword] = React.useState('');
   const [user, setUser] = React.useState('');
 
+  //snackbar state
+  const [visible, setVisible] = React.useState(false);
+  const [messageSnackbar, setMessageSnackbar] = React.useState('');
+  const [snackbarBg, setSnackbarBg] = React.useState('');
+  const onDismissSnackBar = () => setVisible(false);
+
   const loginHandler = () => {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        console.log('Login Succes!');
+        setVisible(true);
+        setMessageSnackbar('Login succes!, Wait a second');
+        setSnackbarBg('green');
         getUser();
-        navigation.navigate('Home');
+        setTimeout(() => {
+          navigation.navigate('Home');
+        }, 2000);
       })
       .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
+        if (error.code === 'auth/invalid-credential') {
+          setVisible(true);
+          setMessageSnackbar('Email or Password is incorect !');
+          setSnackbarBg('red');
         }
-
         if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
+          setVisible(true);
+          setMessageSnackbar('That email address is invalid!');
+          setSnackbarBg('red');
         }
 
-        console.error(error);
+        // console.error(error);
       });
   };
 
@@ -63,83 +76,101 @@ function LoginScreen({navigation}) {
   console.log(user);
 
   return (
-    <PaperProvider>
-      <SafeAreaView>
-        <ScrollView>
-          <View style={{backgroundColor: '#ffffe5'}}>
-            <View style={styles.container}>
-              <View style={styles.containerLogo}>
-                <Image source={require('../asset/ic_launcher_round.png')} />
-              </View>
+    <>
+      <Snackbar
+        wrapperStyle={{top: 0, position: 'absolute', zIndex: 99999}}
+        style={{backgroundColor: snackbarBg}}
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'X',
+          onPress: () => {
+            onDismissSnackBar();
+          },
+        }}>
+        <Text style={{color: 'white'}}>{messageSnackbar}</Text>
+      </Snackbar>
 
-              <View style={styles.textHeadContainer}>
-                <Text style={styles.textHead}>Let’s Get Started !</Text>
-              </View>
-
-              <View style={styles.textSubHeadContainer}>
-                <Text style={styles.textSubHead}>
-                  Create new account to access all feautures
-                </Text>
-              </View>
-
-              <View style={styles.containerFormInput}>
-                <View style={styles.containerInput}>
-                  <IconMail
-                    style={styles.iconStyle}
-                    name="mail"
-                    size={20}
-                    color="white"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    onChangeText={setEmail}
-                    value={email}
-                    placeholder="Email"
-                    placeholderTextColor="white"
-                  />
-                </View>
-                <View style={styles.containerInput}>
-                  <IconPass
-                    style={styles.iconStyle}
-                    name="unlock"
-                    size={20}
-                    color="white"
-                  />
-                  <TextInput
-                    style={styles.input}
-                    secureTextEntry={true}
-                    onChangeText={setPassword}
-                    value={password}
-                    placeholder="Password"
-                    placeholderTextColor="white"
-                  />
+      <PaperProvider>
+        <SafeAreaView>
+          <ScrollView>
+            <View style={{backgroundColor: '#ffffe5'}}>
+              <View style={styles.container}>
+                <View style={styles.containerLogo}>
+                  <Image source={require('../asset/ic_launcher_round.png')} />
                 </View>
 
-                <View style={styles.containerBtnCreate}>
-                  <Button
-                    style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
-                    textColor="grey"
-                    mode="contained"
-                    onPress={() => {
-                      loginHandler();
-                    }}>
-                    LOGIN
-                  </Button>
+                <View style={styles.textHeadContainer}>
+                  <Text style={styles.textHead}>Let’s Get Started !</Text>
                 </View>
 
                 <View style={styles.textSubHeadContainer}>
-                  <Text style={styles.textSubHead}>Don’t have an account?</Text>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate('Register')}>
-                    <Text style={styles.textLoginNow}>Sign Up</Text>
-                  </TouchableOpacity>
+                  <Text style={styles.textSubHead}>
+                    Create new account to access all feautures
+                  </Text>
+                </View>
+
+                <View style={styles.containerFormInput}>
+                  <View style={styles.containerInput}>
+                    <IconMail
+                      style={styles.iconStyle}
+                      name="mail"
+                      size={20}
+                      color="white"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      onChangeText={setEmail}
+                      value={email}
+                      placeholder="Email"
+                      placeholderTextColor="white"
+                    />
+                  </View>
+                  <View style={styles.containerInput}>
+                    <IconPass
+                      style={styles.iconStyle}
+                      name="unlock"
+                      size={20}
+                      color="white"
+                    />
+                    <TextInput
+                      style={styles.input}
+                      secureTextEntry={true}
+                      onChangeText={setPassword}
+                      value={password}
+                      placeholder="Password"
+                      placeholderTextColor="white"
+                    />
+                  </View>
+
+                  <View style={styles.containerBtnCreate}>
+                    <Button
+                      style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
+                      textColor="grey"
+                      mode="contained"
+                      onPress={() => {
+                        loginHandler();
+                      }}>
+                      LOGIN
+                    </Button>
+                  </View>
+
+                  <View style={styles.textSubHeadContainer}>
+                    <Text style={styles.textSubHead}>
+                      Don’t have an account?
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('Register')}>
+                      <Text style={styles.textLoginNow}>Sign Up</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </PaperProvider>
+          </ScrollView>
+        </SafeAreaView>
+      </PaperProvider>
+    </>
   );
 }
 
