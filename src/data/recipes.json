@@ -9,7 +9,8 @@
       "link": "https://www.youtube.com/watch?v=hRta_ZTEddM"
     },
     "isPopular": true,
-    "isNew": true
+    "isNew": true,
+    "category":["soup"]
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2020/11/16/0/FNK_Air-Fryer-Parmesan-Chicken-Broccoli_H1_s4x3.jpg.rend.hgtvcom.826.620.suffix/1605561210481.jpeg",
@@ -21,7 +22,8 @@
       "link": "https://www.youtube.com/watch?v=8uHJBaDC7n4"
     },
     "isPopular": true,
-    "isNew": true
+    "isNew": true,
+    "category":["chicken"]
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2015/1/28/2/KC0413H_Ricotta-Gnocchi_s4x3.jpg.rend.hgtvcom.1280.720.suffix/1532460357212.jpeg",
@@ -33,7 +35,8 @@
       "link": "https://www.youtube.com/watch?v=bRsPRBUa434"
     },
     "isPopular": true,
-    "isNew": true
+    "isNew": true,
+    "category":["soup"]
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2003/10/16/4/tm1b27_pork_tenderloins3.jpg.rend.hgtvcom.1280.720.suffix/1431255253080.jpeg",
@@ -45,7 +48,8 @@
       "link": "https://www.youtube.com/watch?v=N0f-xkxcA30"
     },
     "isPopular": true,
-    "isNew": false
+    "isNew": false,
+    "category":["meat"]
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2008/12/1/1/BX0106_Salmon-Cakes.jpg.rend.hgtvcom.1280.720.suffix/1620691182999.jpeg",
@@ -57,7 +61,8 @@
       "link": "https://www.youtube.com/watch?v=gOwBlnSmuxw"
     },
     "isPopular": true,
-    "isNew": false
+    "isNew": false,
+    "category":["seafood"]
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2009/3/26/0/BX0121-1_Parmesan-Roasted-Broccoli_s4x3.jpg.rend.hgtvcom.1280.720.suffix/1488903158353.jpeg",
@@ -69,7 +74,8 @@
       "link": "https://www.youtube.com/watch?v=OCr9TEMtHjw"
     },
     "isPopular": false,
-    "isNew": false
+    "isNew": false,
+    "category":["soup"]
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/10/8/0/fnk_scalloped-potatoes_s4x3.jpg.rend.hgtvcom.826.620.suffix/1383780633985.jpeg",
@@ -81,7 +87,8 @@
       "link": "https://www.youtube.com/watch?v=AEhBwiIEdj4"
     },
     "isPopular": false,
-    "isNew": false
+    "isNew": false,
+    "category":["seafood"]
   },
   {
     "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2020/12/21/0/FN_maple-delicata-squash-salad_s4x3.jpg.rend.hgtvcom.826.620.suffix/1608574977502.jpeg",
@@ -93,7 +100,8 @@
       "link": "https://www.youtube.com/watch?v=p2RNFbWMsr4"
     },
     "isPopular": false,
-    "isNew": false
+    "isNew": false,
+    "category":["salad"]
   },
   
   {
@@ -106,7 +114,8 @@
       "link": "https://www.youtube.com/watch?v=eZR0GnnWVlQ"
     },
     "isPopular": false,
-    "isNew": false
+    "isNew": false,
+    "category":["dessert"]
   },
   
   
@@ -120,8 +129,37 @@
       "link": "https://www.youtube.com/watch?v=zHFp2mYQjTg"
     },
     "isPopular": true,
-    "isNew": false
+    "isNew": false,
+    "category":["chicken"]
+  },
+
+
+  {
+    "image": "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2011/11/23/0/FN_lemon-chicken-006_s4x3.jpg.rend.hgtvcom.1280.720.suffix/1384540644321.jpeg",
+    "title": "Lemon Chicken",
+    "slug": "lemon-chicken",
+    "ingredients":"1 1/2 pounds chicken breast or chicken tenders, cut into chunks, 1/4 cup all-purpose unbleached flour, Coarse salt, 2 tablespoons wok or vegetable oil, 2 turns of the pan (preferred brand: House of Tsang)",
+    "video": {
+      "title": "The CRUNCHIEST Lemon Chicken ",
+      "link": "https://www.youtube.com/watch?v=zHFp2mYQjTg"
+    },
+    "isPopular": true,
+    "isNew": false,
+    "category":["chicken"]
+  },
+
+  {
+    "image": "https://www.allrecipes.com/thmb/NTbJ-FEgXDGHZcLMnGB-kyGKiGQ=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/4558051-favorite-old-fashioned-gingerbread-photo-by-rachelle-schockey-a5640ee14352477284342558194e5e2e.jpg",
+    "title": "Ginger bread",
+    "slug": "ginger-bread",
+    "ingredients":"Butter: This gingerbread recipe starts with a stick of softened, unsalted butter. Sugar: White sugar adds the perfect amount of sweetness. Egg: A large egg adds moisture and acts as a binder, which means it holds the batter together.",
+    "video": {
+      "title": "Fashioned Gingerbread",
+      "link": "https://www.youtube.com/watch?v=lsN8H7T0-N0"
+    },
+    "isPopular": true,
+    "isNew": false,
+    "category":["dessert"]
   }
-  
   
 ]
