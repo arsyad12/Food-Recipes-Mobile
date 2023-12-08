@@ -45,10 +45,13 @@ function HomeScreen({navigation}) {
             <View style={{flexDirection: 'row', gap: 10}}>
               <View style={{alignItems: 'center'}}>
                 <View style={styles.borderPopular}>
-                  <Image
-                    style={styles.popularImage}
-                    source={require('../asset/hot-soup.png')}
-                  />
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Popular')}>
+                    <Image
+                      style={styles.popularImage}
+                      source={require('../asset/hot-soup.png')}
+                    />
+                  </TouchableOpacity>
                 </View>
                 <Text>Soup</Text>
               </View>

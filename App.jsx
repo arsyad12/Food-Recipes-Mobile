@@ -10,10 +10,13 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
 import HomeScreen from './src/screen/homeScreen';
 import DetailRecipes from './src/screen/detailRecipes';
 import RegisterScreen from './src/screen/registerScreen';
 import LoginScreen from './src/screen/loginScreen';
+import PopulraScreen from './src/screen/populraScreen';
+
 //import messaging untuk kebutuhan push notification
 import messaging from '@react-native-firebase/messaging';
 import firestore from '@react-native-firebase/firestore'; //import firestore
@@ -52,7 +55,7 @@ function App() {
 
 
   React.useEffect(() => {
-    requestUserPermission(); //meminta permisstion notif saat app pertama kali di load
+    requestUserPermission(); //meminta AKSES permisstion notif saat app pertama kali di load
 
     //mengirim data token ke firebase, menggunakan doc agar tidak terjadi duplicate token
     firestore()
@@ -72,6 +75,7 @@ function App() {
         <Stack.Screen name="Details" component={DetailRecipes} options={{headerShown: false}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="Popular" component={PopulraScreen} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
