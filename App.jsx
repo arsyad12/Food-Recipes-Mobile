@@ -16,6 +16,7 @@ import DetailRecipes from './src/screen/detailRecipes';
 import RegisterScreen from './src/screen/registerScreen';
 import LoginScreen from './src/screen/loginScreen';
 import PopulraScreen from './src/screen/populraScreen';
+import ListFood from './src/component/ListFood';
 
 //import messaging untuk kebutuhan push notification
 import messaging from '@react-native-firebase/messaging';
@@ -76,6 +77,7 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Popular" component={PopulraScreen} options={{headerShown: false}}/>
+        <Stack.Screen name="List" component={ListFood} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

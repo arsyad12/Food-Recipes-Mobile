@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import LISTFOOD from '../component/listFood';
+import LISTFOOD from '../component/ListFood';
 import listData from '../data/recipes.json';
 
 function PopulraScreen({navigation, route}) {
