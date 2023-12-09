@@ -6,7 +6,7 @@ import listData from '../data/recipes.json';
 import {useNavigation} from '@react-navigation/native';
 
 function ListFood({name, image, category}) {
-  const navigation = useNavigation();
+  const navigation = useNavigation(); //karena udah ada props untuk ngambil data , untuk navigation kita buat variable baru aja
   return (
     <>
       <View>

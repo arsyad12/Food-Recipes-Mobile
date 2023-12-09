@@ -1,5 +1,5 @@
 import React from 'react';
-import {PaperProvider, Text, Searchbar} from 'react-native-paper';
+import {PaperProvider, Text, Searchbar, Button} from 'react-native-paper';
 import {
   //   ini adalah tag bawaan dar react native
   SafeAreaView, //brguna untuk Meyesuaikan ukuran layar agar design tidak rusak, contohnya saat HP mempunyai Poni
@@ -14,7 +14,8 @@ import {
 import listData from '../data/recipes.json';
 
 function HomeScreen({navigation}) {
-  const [keyword, setKeyword] = React.useState('');
+  const [keyword, setKeyword] = React.useState(null);
+
   return (
     /* eslint-disable react-native/no-inline-styles */
 
@@ -39,6 +40,22 @@ function HomeScreen({navigation}) {
                     outlineStyle={{borderRadius: 20}}
                   />
                 </View>
+
+                {keyword ? (
+                  <View>
+                    {listData
+                      .filter(item => item.title.includes(keyword))
+                      .map(item => (
+                        <View style={styles.resultContainer}>
+                          <Button
+                            style={styles.resultStyle}
+                            onPress={() => console.log('Pressed')}>
+                            {item.title}
+                          </Button>
+                        </View>
+                      ))}
+                  </View>
+                ) : null}
 
                 <View>
                   <Text style={styles.headSection}>Popular For Your</Text>
@@ -231,6 +248,15 @@ const styles = StyleSheet.create({
   searchBar: {
     borderRadius: 20,
     backgroundColor: '#EFEFEF',
+  },
+
+  resultContainer: {
+    marginTop: 10,
+  },
+
+  resultStyle: {
+    borderRadius: 5,
+    backgroundColor: 'orange',
   },
 
   headSection: {
