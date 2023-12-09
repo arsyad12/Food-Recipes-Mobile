@@ -3,22 +3,19 @@ import React from 'react';
 import {Text} from 'react-native-paper';
 import {TouchableOpacity, View, Image, StyleSheet} from 'react-native';
 
-function listFood(navigation) {
+function listFood({navigation, name, image, category}) {
   return (
     <>
       <View>
         <View style={{flexDirection: 'row', paddingTop: 20}}>
           <TouchableOpacity onPress={() => navigation.navigate('Details')}>
             <View>
-              <Image
-                style={styles.popularRecipesImg}
-                source={require('../asset/food1.jpg')}
-              />
+              <Image style={styles.popularRecipesImg} source={{uri: image}} />
             </View>
           </TouchableOpacity>
           <View>
-            <Text style={styles.textPopularRecipes}>Nasi Goyeng</Text>
-            <Text style={styles.textCategory}>Spicy, Salted, Acid</Text>
+            <Text style={styles.textPopularRecipes}>{name}</Text>
+            <Text style={styles.textCategory}>{category}</Text>
             <View style={{flexDirection: 'row'}}>
               <Image
                 style={{marginLeft: 10, marginTop: 2}}
