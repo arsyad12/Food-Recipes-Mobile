@@ -45,11 +45,13 @@ function HomeScreen({navigation}) {
                   <View>
                     {listData
                       .filter(item => item.title.includes(keyword))
-                      .map(item => (
-                        <View style={styles.resultContainer}>
+                      .map((item, key) => (
+                        <View key={key} style={styles.resultContainer}>
                           <Button
                             style={styles.resultStyle}
-                            onPress={() => console.log('Pressed')}>
+                            onPress={() =>
+                              navigation.navigate('Details', item)
+                            }>
                             {item.title}
                           </Button>
                         </View>
