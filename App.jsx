@@ -73,7 +73,21 @@ function App() {
 
   function TabScreen() {//function untuk navigasi tabscreeen
     return (
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={() => ({
+
+        tabBarActiveTintColor:'orange',
+        tabBarItemStyle:{
+          padding:0
+        },
+
+        tabBarStyle: {
+          height: 60,
+          backgroundColor: '#ffffe5',
+          borderTopWidth: 0.5,
+          borderTopColor:'orange',
+
+      },
+    })}>
         <Tab.Screen
           name="Login"
           component={LoginScreen}
@@ -83,7 +97,7 @@ function App() {
               showIcon: true,
             },
             tabBarIcon: ({color, size}) => (
-              <IconAntDesign name="login" color={color} size={size} />
+              <IconAntDesign name="login" color="orange" size={size} />
             ),
           }}
         />
@@ -96,7 +110,7 @@ function App() {
               showIcon: true,
             },
             tabBarIcon: ({color, size}) => (
-              <Icon name="home" color={color} size={size} />
+              <Icon name="home" color="orange" size={size} />
             ),
           }}
         />
@@ -109,7 +123,7 @@ function App() {
               showIcon: true,
             },
             tabBarIcon: ({color, size}) => (
-              <Icon name="user-plus" color={color} size={size} />
+              <Icon name="user-plus" color="orange" size={size} />
             ),
           }}
         />
@@ -122,7 +136,7 @@ function App() {
               showIcon: true,
             },
             tabBarIcon: ({color, size}) => (
-              <Icon name="user" color={color} size={size} />
+              <Icon name="user" color="orange" size={size} />
             ),
           }}
         />

@@ -106,124 +106,120 @@ function RegisterScreen({navigation}) {
 
       <PaperProvider>
         <SafeAreaView>
-          <ScrollView>
-            <View style={{backgroundColor: '#ffffe5'}}>
-              <View style={styles.container}>
-                <View style={styles.textHeadContainer}>
-                  <Text style={styles.textHead}>Let’s Get Started !</Text>
+          <View style={{backgroundColor: '#ffffe5'}}>
+            <View style={styles.container}>
+              <View style={styles.textHeadContainer}>
+                <Text style={styles.textHead}>Let’s Get Started !</Text>
+              </View>
+
+              <View style={styles.textSubHeadContainer}>
+                <Text style={styles.textSubHead}>
+                  Create new account to access all feautures
+                </Text>
+              </View>
+
+              <View style={styles.containerFormInput}>
+                <View style={styles.containerInput}>
+                  <IconUser
+                    style={styles.iconStyle}
+                    name="user"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setUser}
+                    value={user}
+                    placeholder="Name"
+                    placeholderTextColor="white"
+                  />
+                </View>
+
+                <View style={styles.containerInput}>
+                  <IconMail
+                    style={styles.iconStyle}
+                    name="mail"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setEmail}
+                    value={email}
+                    placeholder="Email"
+                    placeholderTextColor="white"
+                  />
+                </View>
+
+                <View style={styles.containerInput}>
+                  <IconPhone
+                    style={styles.iconStyle}
+                    name="phone"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setPhone}
+                    value={phone}
+                    placeholder="Phone Number"
+                    placeholderTextColor="white"
+                    keyboardType="numeric"
+                  />
+                </View>
+
+                <View style={styles.containerInput}>
+                  <IconPass
+                    style={styles.iconStyle}
+                    name="lock"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setPass}
+                    value={pass}
+                    placeholder="Password"
+                    placeholderTextColor="white"
+                  />
+                </View>
+
+                <View style={styles.containerInput}>
+                  <IconPass
+                    style={styles.iconStyle}
+                    name="unlock"
+                    size={20}
+                    color="white"
+                  />
+                  <TextInput
+                    style={styles.input}
+                    onChangeText={setConfirm}
+                    value={confirm}
+                    placeholder="Confirm Password"
+                    placeholderTextColor="white"
+                  />
+                </View>
+
+                <View style={styles.containerBtnCreate}>
+                  <Button
+                    style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
+                    textColor="grey"
+                    mode="contained"
+                    onPress={() => registerHandler()}>
+                    Create
+                  </Button>
                 </View>
 
                 <View style={styles.textSubHeadContainer}>
-                  <Text style={styles.textSubHead}>
-                    Create new account to access all feautures
-                  </Text>
-                </View>
-
-                <View style={styles.containerFormInput}>
-                  <View style={styles.containerInput}>
-                    <IconUser
-                      style={styles.iconStyle}
-                      name="user"
-                      size={20}
-                      color="white"
-                    />
-                    <TextInput
-                      style={styles.input}
-                      onChangeText={setUser}
-                      value={user}
-                      placeholder="Name"
-                      placeholderTextColor="white"
-                    />
-                  </View>
-
-                  <View style={styles.containerInput}>
-                    <IconMail
-                      style={styles.iconStyle}
-                      name="mail"
-                      size={20}
-                      color="white"
-                    />
-                    <TextInput
-                      style={styles.input}
-                      onChangeText={setEmail}
-                      value={email}
-                      placeholder="Email"
-                      placeholderTextColor="white"
-                    />
-                  </View>
-
-                  <View style={styles.containerInput}>
-                    <IconPhone
-                      style={styles.iconStyle}
-                      name="phone"
-                      size={20}
-                      color="white"
-                    />
-                    <TextInput
-                      style={styles.input}
-                      onChangeText={setPhone}
-                      value={phone}
-                      placeholder="Phone Number"
-                      placeholderTextColor="white"
-                      keyboardType="numeric"
-                    />
-                  </View>
-
-                  <View style={styles.containerInput}>
-                    <IconPass
-                      style={styles.iconStyle}
-                      name="lock"
-                      size={20}
-                      color="white"
-                    />
-                    <TextInput
-                      style={styles.input}
-                      onChangeText={setPass}
-                      value={pass}
-                      placeholder="Password"
-                      placeholderTextColor="white"
-                    />
-                  </View>
-
-                  <View style={styles.containerInput}>
-                    <IconPass
-                      style={styles.iconStyle}
-                      name="unlock"
-                      size={20}
-                      color="white"
-                    />
-                    <TextInput
-                      style={styles.input}
-                      onChangeText={setConfirm}
-                      value={confirm}
-                      placeholder="Confirm Password"
-                      placeholderTextColor="white"
-                    />
-                  </View>
-
-                  <View style={styles.containerBtnCreate}>
-                    <Button
-                      style={{borderRadius: 10, backgroundColor: '#ffdd56'}}
-                      textColor="grey"
-                      mode="contained"
-                      onPress={() => registerHandler()}>
-                      Create
-                    </Button>
-                  </View>
-
-                  <View style={styles.textSubHeadContainer}>
-                    <Text style={styles.textSubHead}>
-                      Already Have Account?
-                    </Text>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate('Login')}>
-                      <Text style={styles.textLoginNow}>Login Now</Text>
-                    </TouchableOpacity>
-                  </View>
+                  <Text style={styles.textSubHead}>Already Have Account?</Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Login')}>
+                    <Text style={styles.textLoginNow}>Login Now</Text>
+                  </TouchableOpacity>
                 </View>
               </View>
             </View>
-          </ScrollView>
+          </View>
         </SafeAreaView>
       </PaperProvider>
     </>
