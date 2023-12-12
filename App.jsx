@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 /**
@@ -10,6 +11,8 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 
 import HomeScreen from './src/screen/homeScreen';
 import DetailRecipes from './src/screen/detailRecipes';
@@ -17,6 +20,7 @@ import RegisterScreen from './src/screen/registerScreen';
 import LoginScreen from './src/screen/loginScreen';
 import PopulraScreen from './src/screen/populraScreen';
 import ListFood from './src/component/ListFood';
+import ProfilScreen from './src/screen/profilScreen';
 
 //import messaging untuk kebutuhan push notification
 import messaging from '@react-native-firebase/messaging';
@@ -29,7 +33,8 @@ import {
 } from 'react-native';
 
 function App() {
-  const Stack = createNativeStackNavigator();//untuk navigation
+  const Stack = createNativeStackNavigator();//untuk navigation antar component
+  const Tab = createBottomTabNavigator(); //navigasi bottom
 
   const [token,setToken] = React.useState('');
 
@@ -66,16 +71,27 @@ function App() {
             });
   }, []);
 
+
+  function Homes() {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
+        <Tab.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
+        <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
+        <Tab.Screen name="Profile" component={ProfilScreen} options={{headerShown: false}}/>
+      </Tab.Navigator>
+    );
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
           {/* name digunakan untuk link navigasi nantinya */}
           {/* komponen adalah page yang akan di tampilkan */}
           {/* component yang pertama kali dipanggil akan jadi homepage */}
+        <Stack.Screen name="Homes" component={Homes} options={{headerShown: false}}/>
         <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Details" component={DetailRecipes} options={{headerShown: false}}/>
-        <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
-        <Stack.Screen name="Register" component={RegisterScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Popular" component={PopulraScreen} options={{headerShown: false}}/>
         <Stack.Screen name="List" component={ListFood} options={{headerShown: false}}/>
       </Stack.Navigator>
