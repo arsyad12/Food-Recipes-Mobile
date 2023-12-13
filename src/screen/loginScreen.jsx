@@ -17,6 +17,7 @@ import IconPass from 'react-native-vector-icons/Feather';
 import auth from '@react-native-firebase/auth'; //import auth
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNRestart from 'react-native-restart';
 
 function LoginScreen({navigation}) {
   const [email, setEmail] = React.useState('');
@@ -37,9 +38,10 @@ function LoginScreen({navigation}) {
         setMessageSnackbar('Login succes!, Wait a second');
         setSnackbarBg('green');
         getUser();
-        setTimeout(() => {
-          navigation.navigate('Home');
-        }, 2000);
+        // setTimeout(() => {
+        //   navigation.navigate('Home');
+        // }, 2000);
+        RNRestart.restart();
       })
       .catch(error => {
         if (error.code === 'auth/invalid-credential') {

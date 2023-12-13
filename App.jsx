@@ -24,20 +24,27 @@ import ListFood from './src/component/ListFood';
 import ProfilScreen from './src/screen/profilScreen';
 import EditProfileScreen from './src/screen/editProfileScreen';
 
+// import firestore from '@react-native-firebase/firestore';
 //async storage disi buat get data buat validasi tabscreen
 //kalo ada data user, maka tab login,register hilang
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 //import messaging untuk kebutuhan push notification
 import messaging from '@react-native-firebase/messaging';
 import firestore from '@react-native-firebase/firestore'; //import firestore
 
-import // StyleSheet, //berguna untuk styling di react native
-
-'react-native';
 
 function App() {
+
+  const [cekUser,setUser] = React.useState(null);
+
+    (async () => {
+      const user = await AsyncStorage.getItem('user');
+      setUser(user);
+    })();
+
+    console.log(cekUser);
+
   const Stack = createNativeStackNavigator(); //untuk navigation antar component
   const Tab = createBottomTabNavigator(); //navigasi bottom
 
@@ -94,6 +101,7 @@ function App() {
             borderTopColor: 'orange',
           },
         })}>
+        {!cekUser ? (
         <Tab.Screen
           name="Login"
           component={LoginScreen}
@@ -107,6 +115,7 @@ function App() {
             ),
           }}
         />
+        ) : null}
         <Tab.Screen
           name="Home"
           component={HomeScreen}
@@ -120,6 +129,7 @@ function App() {
             ),
           }}
         />
+        {!cekUser ? (
         <Tab.Screen
           name="Register"
           component={RegisterScreen}
@@ -133,6 +143,9 @@ function App() {
             ),
           }}
         />
+        ) : null}
+
+{cekUser ? (
         <Tab.Screen
           name="Profile"
           component={ProfilScreen}
@@ -146,7 +159,10 @@ function App() {
             ),
           }}
         />
+        ) : null}
+
       </Tab.Navigator>
+
     );
   }
 
@@ -185,10 +201,10 @@ function App() {
           options={{headerShown: false}}
         />
         <Stack.Screen
-        name="EditProfile"
-        component={EditProfileScreen}
-        options={{headerShown: false}}
-      />
+          name="EditProfile"
+          component={EditProfileScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
