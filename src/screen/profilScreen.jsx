@@ -32,7 +32,7 @@ function ProfilScreen({navigation}) {
           <View style={styles.containerMenuProfile}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate('Home');
+                navigation.navigate('EditProfile');
               }}>
               <View style={styles.borderMenu}>
                 <View style={{width: 150}}>

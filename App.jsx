@@ -22,6 +22,8 @@ import LoginScreen from './src/screen/loginScreen';
 import PopulraScreen from './src/screen/populraScreen';
 import ListFood from './src/component/ListFood';
 import ProfilScreen from './src/screen/profilScreen';
+import EditProfileScreen from './src/screen/editProfileScreen';
+
 
 //import messaging untuk kebutuhan push notification
 import messaging from '@react-native-firebase/messaging';
@@ -71,23 +73,23 @@ function App() {
       });
   }, []);
 
-  function TabScreen() {//function untuk navigasi tabscreeen
+  function TabScreen() {
+    //function untuk navigasi tabscreeen
     return (
-      <Tab.Navigator screenOptions={() => ({
+      <Tab.Navigator
+        screenOptions={() => ({
+          tabBarActiveTintColor: 'orange',
+          tabBarItemStyle: {
+            padding: 0,
+          },
 
-        tabBarActiveTintColor:'orange',
-        tabBarItemStyle:{
-          padding:0
-        },
-
-        tabBarStyle: {
-          height: 60,
-          backgroundColor: '#ffffe5',
-          borderTopWidth: 0.5,
-          borderTopColor:'orange',
-
-      },
-    })}>
+          tabBarStyle: {
+            height: 60,
+            backgroundColor: '#ffffe5',
+            borderTopWidth: 0.5,
+            borderTopColor: 'orange',
+          },
+        })}>
         <Tab.Screen
           name="Login"
           component={LoginScreen}
@@ -150,6 +152,9 @@ function App() {
         {/* name digunakan untuk link navigasi nantinya */}
         {/* komponen adalah page yang akan di tampilkan */}
         {/* component yang pertama kali dipanggil akan jadi homepage */}
+        {/* Tabscreen dan stack screen gabisa digabung dalam 1 navigator container */}
+        {/* jadi tab screen dibuat function dan dipanggil jadi komponen baru di stackscreen*/}
+
         <Stack.Screen
           name="TabScreen"
           component={TabScreen}
@@ -175,6 +180,11 @@ function App() {
           component={ListFood}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+        name="EditProfile"
+        component={EditProfileScreen}
+        options={{headerShown: false}}
+      />
       </Stack.Navigator>
     </NavigationContainer>
   );
