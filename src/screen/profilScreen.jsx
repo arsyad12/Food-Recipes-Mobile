@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import RNRestart from 'react-native-restart';
 
 function ProfilScreen({navigation}) {
   return (
@@ -75,15 +77,21 @@ function ProfilScreen({navigation}) {
               </View>
             </View>
 
-            <View style={styles.borderMenu}>
-              <View style={{width: 150}}>
-                <Text style={styles.textMenu}>Logout</Text>
+            <TouchableOpacity
+              onPress={() => {
+                AsyncStorage.removeItem('user');
+                RNRestart.restart();
+              }}>
+              <View style={styles.borderMenu}>
+                <View style={{width: 150}}>
+                  <Text style={styles.textMenu}>Logout</Text>
+                </View>
+                <View
+                  style={{marginLeft: 20, width: 150, alignItems: 'flex-end'}}>
+                  <Icon name="angle-right" size={22} color="white" />
+                </View>
               </View>
-              <View
-                style={{marginLeft: 20, width: 150, alignItems: 'flex-end'}}>
-                <Icon name="angle-right" size={22} color="white" />
-              </View>
-            </View>
+            </TouchableOpacity>
           </View>
         </SafeAreaView>
       </PaperProvider>
