@@ -3,7 +3,6 @@ import React from 'react';
 import {PaperProvider, Button, TextInput, Snackbar} from 'react-native-paper';
 import {
   SafeAreaView,
-  ScrollView,
   Text,
   Image,
   View,
@@ -13,7 +12,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-function ProfilScreen() {
+function ProfilScreen({navigation}) {
   return (
     <>
       <PaperProvider>
@@ -31,15 +30,20 @@ function ProfilScreen() {
           </View>
 
           <View style={styles.containerMenuProfile}>
-            <View style={styles.borderMenu}>
-              <View style={{width: 150}}>
-                <Text style={styles.textMenu}>Edit Profile</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Home');
+              }}>
+              <View style={styles.borderMenu}>
+                <View style={{width: 150}}>
+                  <Text style={styles.textMenu}>Edit Profile</Text>
+                </View>
+                <View
+                  style={{marginLeft: 20, width: 150, alignItems: 'flex-end'}}>
+                  <Icon name="angle-right" size={22} color="white" />
+                </View>
               </View>
-              <View
-                style={{marginLeft: 20, width: 150, alignItems: 'flex-end'}}>
-                <Icon name="angle-right" size={22} color="white" />
-              </View>
-            </View>
+            </TouchableOpacity>
 
             <View style={styles.borderMenu}>
               <View style={{width: 150}}>
