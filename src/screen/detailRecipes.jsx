@@ -2,7 +2,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import asyn storage di sini untuk ngambil data
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 import {PaperProvider, Button, TextInput, Snackbar} from 'react-native-paper';
 import {

@@ -24,6 +24,10 @@ import ListFood from './src/component/ListFood';
 import ProfilScreen from './src/screen/profilScreen';
 import EditProfileScreen from './src/screen/editProfileScreen';
 
+//async storage disi buat get data buat validasi tabscreen
+//kalo ada data user, maka tab login,register hilang
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 //import messaging untuk kebutuhan push notification
 import messaging from '@react-native-firebase/messaging';

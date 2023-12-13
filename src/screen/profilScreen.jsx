@@ -74,6 +74,16 @@ function ProfilScreen({navigation}) {
                 <Icon name="angle-right" size={22} color="white" />
               </View>
             </View>
+
+            <View style={styles.borderMenu}>
+              <View style={{width: 150}}>
+                <Text style={styles.textMenu}>Logout</Text>
+              </View>
+              <View
+                style={{marginLeft: 20, width: 150, alignItems: 'flex-end'}}>
+                <Icon name="angle-right" size={22} color="white" />
+              </View>
+            </View>
           </View>
         </SafeAreaView>
       </PaperProvider>
