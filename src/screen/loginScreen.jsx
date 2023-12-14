@@ -4,7 +4,6 @@ import {Text, Button, PaperProvider, Snackbar} from 'react-native-paper';
 import {
   //   ini adalah tag bawaan dar react native
   SafeAreaView, //brguna untuk Meyesuaikan ukuran layar agar design tidak rusak, contohnya saat HP mempunyai Poni
-  ScrollView, //berguna untuk membuat seuatu section bisa di scrol
   StyleSheet, //berguna untuk styling di react native
   View, //view ini fungsinya adalah DIV di react native dan untuk kontennya dimasukan kedalam section
   Image,
@@ -17,7 +16,7 @@ import IconPass from 'react-native-vector-icons/Feather';
 import auth from '@react-native-firebase/auth'; //import auth
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RNRestart from 'react-native-restart';
+// import RNRestart from 'react-native-restart';
 
 function LoginScreen({navigation}) {
   const [email, setEmail] = React.useState('');

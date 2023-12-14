@@ -12,7 +12,7 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import RNRestart from 'react-native-restart';
+// import RNRestart from 'react-native-restart';
 
 function ProfilScreen({navigation}) {
   return (
