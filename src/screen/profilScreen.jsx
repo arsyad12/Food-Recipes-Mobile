@@ -15,6 +15,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import RNRestart from 'react-native-restart';
 
 function ProfilScreen({navigation}) {
+  const [data, setData] = React.useState({});
+
+  (async () => {
+    const user = await AsyncStorage.getItem('user');
+    setData(JSON.parse(user));
+  })();
+
   return (
     <>
       <PaperProvider>
@@ -28,7 +35,7 @@ function ProfilScreen({navigation}) {
               style={styles.profileImage}
               source={require('../asset/food1.jpg')}
             />
-            <Text style={styles.textName}>ALOHA</Text>
+            <Text style={styles.textName}>{data?.username ?? 'Halo'}</Text>
           </View>
 
           <View style={styles.containerMenuProfile}>
