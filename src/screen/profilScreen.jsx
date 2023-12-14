@@ -80,7 +80,10 @@ function ProfilScreen({navigation}) {
             <TouchableOpacity
               onPress={() => {
                 AsyncStorage.removeItem('user');
-                RNRestart.restart();
+                // RNRestart.restart();
+                setTimeout(() => {
+                  navigation.navigate('Home');
+                }, 2000);
               }}>
               <View style={styles.borderMenu}>
                 <View style={{width: 150}}>

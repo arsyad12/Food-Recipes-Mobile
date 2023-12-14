@@ -1,5 +1,10 @@
+//alasan kenapa navigation dipisah supaya bisa detect perubahan
+//async storage setelah login
+//saat data user ditemukan bakal hide beberapa tab
+//sesuai kondisi dibawah
+
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable react-hooks/exhaustive-deps */
+
 /* eslint-disable prettier/prettier */
 /**
  * Sample React Native App
@@ -12,32 +17,27 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import { PaperProvider } from 'react-native-paper';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IconAntDesign from 'react-native-vector-icons/AntDesign';
-import HomeScreen from './src/screen/homeScreen';
-import DetailRecipes from './src/screen/detailRecipes';
-import RegisterScreen from './src/screen/registerScreen';
-import LoginScreen from './src/screen/loginScreen';
-import PopulraScreen from './src/screen/populraScreen';
-import ListFood from './src/component/ListFood';
-import ProfilScreen from './src/screen/profilScreen';
-import EditProfileScreen from './src/screen/editProfileScreen';
-import Navigations from './navigation/navigation';
+import HomeScreen from '../src/screen/homeScreen';
+import DetailRecipes from '../src/screen/detailRecipes';
+import RegisterScreen from '../src/screen/registerScreen';
+import LoginScreen from '../src/screen/loginScreen';
+import PopulraScreen from '../src/screen/populraScreen';
+import ListFood from '../src/component/ListFood';
+import ProfilScreen from '../src/screen/profilScreen';
+import EditProfileScreen from '../src/screen/editProfileScreen';
 
 // import firestore from '@react-native-firebase/firestore';
 //async storage disi buat get data buat validasi tabscreen
 //kalo ada data user, maka tab login,register hilang
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-//import messaging untuk kebutuhan push notification
-import messaging from '@react-native-firebase/messaging';
-import firestore from '@react-native-firebase/firestore'; //import firestore
 
+function TabScreen() {
 
-function App() {
-
-  const [cekUser,setUser] = React.useState(null);
+    const [cekUser,setUser] = React.useState(null);
 
     (async () => {
       const user = await AsyncStorage.getItem('user');
@@ -46,46 +46,7 @@ function App() {
 
     console.log(cekUser);
 
-  const Stack = createNativeStackNavigator(); //untuk navigation antar component
-  const Tab = createBottomTabNavigator(); //navigasi bottom
-
-  const [token, setToken] = React.useState('');
-
-  console.log(token);
-
-  //funtion generate token device
-  const generateToken = async () => {
-    const deviceToken = await messaging().getToken();
-    setToken(deviceToken);
-  };
-
-  //function untuk meminta permisstion notif
-  const requestUserPermission = async () => {
-    const authStatus = await messaging().requestPermission();
-    const enabled =
-      authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-      authStatus === messaging.AuthorizationStatus.PROVISIONAL;
-
-    if (enabled) {
-      generateToken(); //kalo diijinin atau enable, token device bakal dibuat
-      console.log('Authorization status:', authStatus);
-    }
-  };
-
-  React.useEffect(() => {
-    requestUserPermission(); //meminta AKSES permisstion notif saat app pertama kali di load
-
-    //mengirim data token ke firebase, menggunakan doc agar tidak terjadi duplicate token
-    firestore()
-      .collection('tokenList')
-      .doc(token)
-      .set({})
-      .then(() => {
-        console.log('token has saved');
-      });
-  }, []);
-
-  function TabScreen() {
+    const Tab = createBottomTabNavigator(); //navigasi bottom
     //function untuk navigasi tabscreeen
     return (
       <Tab.Navigator
@@ -167,16 +128,24 @@ function App() {
     );
   }
 
+
+
+function navigations() {
+
+  const Stack = createNativeStackNavigator(); //untuk navigation antar component
+
+
+
   return (
-    <NavigationContainer>
-      {/* <Stack.Navigator> */}
+
+      <Stack.Navigator>
         {/* name digunakan untuk link navigasi nantinya */}
         {/* komponen adalah page yang akan di tampilkan */}
         {/* component yang pertama kali dipanggil akan jadi homepage */}
         {/* Tabscreen dan stack screen gabisa digabung dalam 1 navigator container */}
         {/* jadi tab screen dibuat function dan dipanggil jadi komponen baru di stackscreen*/}
 
-        {/* <Stack.Screen
+        <Stack.Screen
           name="TabScreen"
           component={TabScreen}
           options={{headerShown: false}}
@@ -206,14 +175,11 @@ function App() {
           component={EditProfileScreen}
           options={{headerShown: false}}
         />
-      </Stack.Navigator> */}
-      <PaperProvider>
-      <Navigations/>
-      </PaperProvider>
-    </NavigationContainer>
+      </Stack.Navigator>
+
   );
 }
 
-// const styles = StyleSheet.create({});
 
-export default App;
+
+export default navigations;

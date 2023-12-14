@@ -38,10 +38,10 @@ function LoginScreen({navigation}) {
         setMessageSnackbar('Login succes!, Wait a second');
         setSnackbarBg('green');
         getUser();
-        // setTimeout(() => {
-        //   navigation.navigate('Home');
-        // }, 2000);
-        RNRestart.restart();
+        setTimeout(() => {
+          navigation.navigate('Home');
+        }, 2000);
+        // RNRestart.restart();
       })
       .catch(error => {
         if (error.code === 'auth/invalid-credential') {
