@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {PaperProvider, Button, TextInput, Snackbar} from 'react-native-paper';
+import {PaperProvider, Snackbar} from 'react-native-paper';
 import {
   SafeAreaView,
   Text,
@@ -12,15 +12,17 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
 // import RNRestart from 'react-native-restart';
 
 function ProfilScreen({navigation}) {
-  const [data, setData] = React.useState({});
-
-  (async () => {
-    const user = await AsyncStorage.getItem('user');
-    setData(JSON.parse(user));
-  })();
+  const [cekUser, setUser] = React.useState(null);
+  React.useEffect(() => {
+    (async () => {
+      const user = await AsyncStorage.getItem('user');
+      setUser(JSON.parse(user));
+    })();
+  }, []);
 
   return (
     <>
@@ -35,7 +37,7 @@ function ProfilScreen({navigation}) {
               style={styles.profileImage}
               source={require('../asset/food1.jpg')}
             />
-            <Text style={styles.textName}>{data?.username ?? 'Halo'}</Text>
+            <Text style={styles.textName}>{cekUser?.username ?? 'Aloha'}</Text>
           </View>
 
           <View style={styles.containerMenuProfile}>

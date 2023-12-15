@@ -70,7 +70,7 @@ getComment();
 
 const btnCommentHandler = async()=>{
 const user = await AsyncStorage.getItem('user');
-console.log(user);
+// console.log(user);
 if (user) {
   firestore()
 .collection('comment')

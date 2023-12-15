@@ -2,9 +2,37 @@
 import React from 'react';
 import {Text, SafeAreaView, View, StyleSheet} from 'react-native';
 import {PaperProvider, Button, TextInput} from 'react-native-paper';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function EditProfileScreen() {
-  const [text, setText] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [pass, setPass] = React.useState('');
+  const [docId, setDocId] = React.useState('');
+
+  console.log(`ini data : ${docId}`);
+
+  React.useEffect(() => {
+    (async () => {
+      const id = await AsyncStorage.getItem('idDoc');
+      setDocId(JSON.parse(id));
+    })();
+  }, []);
+
+  const btnUpdateHandler = () => {
+    firestore()
+      .collection('user')
+      .doc(docId)
+      .update({
+        username: name,
+      })
+      .then(() => {
+        console.log('User updated!');
+      });
+  };
+
   return (
     <>
       <PaperProvider>
@@ -13,11 +41,14 @@ function EditProfileScreen() {
             <View style={styles.container}>
               <View>
                 <Text
-                  style={{fontSize: 20, textAlign: 'center', color: 'orange'}}>
+                  style={{
+                    fontSize: 20,
+                    textAlign: 'center',
+                    color: 'orange',
+                  }}>
                   Edit Profile
                 </Text>
               </View>
-
               <View>
                 <View style={styles.containerFormInput}>
                   <View>
@@ -25,15 +56,15 @@ function EditProfileScreen() {
                       style={{width: 200}}
                       label="Name"
                       mode="outlined"
-                      value={text}
-                      onChangeText={text => setText(text)}
+                      value={name}
+                      onChangeText={name => setName(name)}
                     />
                   </View>
 
                   <View>
                     <Button
                       style={styles.buttonUpdate}
-                      onPress={() => console.log('Pressed')}>
+                      onPress={() => btnUpdateHandler()}>
                       Update
                     </Button>
                   </View>
@@ -49,8 +80,8 @@ function EditProfileScreen() {
                       mode="outlined"
                       secureTextEntry
                       right={<TextInput.Icon icon="eye" />}
-                      value={text}
-                      onChangeText={text => setText(text)}
+                      value={pass}
+                      onChangeText={pass => setPass(pass)}
                     />
                   </View>
 
@@ -69,10 +100,10 @@ function EditProfileScreen() {
                   <View>
                     <TextInput
                       style={{width: 200}}
-                      label="Photo"
+                      label="Email"
                       mode="outlined"
-                      value={text}
-                      onChangeText={text => setText(text)}
+                      value={email}
+                      onChangeText={email => setEmail(email)}
                     />
                   </View>
 

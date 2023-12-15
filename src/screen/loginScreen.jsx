@@ -22,6 +22,7 @@ function LoginScreen({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [user, setUser] = React.useState('');
+  const [idDoc, setIdDoc] = React.useState('');
 
   //snackbar state
   const [visible, setVisible] = React.useState(false);
@@ -37,6 +38,7 @@ function LoginScreen({navigation}) {
         setMessageSnackbar('Login succes!, Wait a second');
         setSnackbarBg('green');
         getUser();
+        getDocId();
         setTimeout(() => {
           navigation.navigate('Home');
         }, 2000);
@@ -65,16 +67,36 @@ function LoginScreen({navigation}) {
       .where('email', '==', email)
       .get()
       .then(async querySnapshot => {
-        let tempData = [];
+        let tempData = []; //menampung data user yang emailnya sesuai dengan filter
+        let tempIdDoc = []; //menampung data id document buat kebutuhan update dan delete data
         querySnapshot.forEach(documentSnapshot => {
-          tempData.push(documentSnapshot);
+          tempData.push(documentSnapshot, {document: documentSnapshot.id});
+          tempIdDoc.push();
         });
         setUser(tempData); //setdata nya harus diluar foreach, biar kedetect
+        setIdDoc(tempIdDoc);
         await AsyncStorage.setItem('user', JSON.stringify(tempData[0]._data));
       });
   };
 
+  const getDocId = () => {
+    firestore()
+      .collection('user')
+      //filtering data antara yang didapet dari parameter dengan yang di firestore
+      .where('email', '==', email)
+      .get()
+      .then(async querySnapshot => {
+        let tempIdDoc = []; //menampung data id document buat kebutuhan update dan delete data
+        querySnapshot.forEach(documentSnapshot => {
+          tempIdDoc.push(documentSnapshot.id);
+        });
+        setIdDoc(tempIdDoc);
+        await AsyncStorage.setItem('idDoc', JSON.stringify(tempIdDoc[0]));
+      });
+  };
+
   console.log(user);
+  console.log(idDoc);
 
   return (
     <>
