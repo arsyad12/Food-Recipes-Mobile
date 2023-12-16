@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 /**
@@ -21,6 +20,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //import messaging untuk kebutuhan push notification
 import messaging from '@react-native-firebase/messaging';
 import firestore from '@react-native-firebase/firestore'; //import firestore
+
+import store from './src/store';
+import { Provider } from 'react-redux';
 
 function App() {
 
@@ -64,7 +66,9 @@ function App() {
   return (
     <NavigationContainer>
       <PaperProvider>
+      <Provider store={store}>
         <Navigations />
+        </Provider>
       </PaperProvider>
     </NavigationContainer>
   );
