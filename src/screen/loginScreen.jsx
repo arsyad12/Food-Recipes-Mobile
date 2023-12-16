@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Text, Button, PaperProvider, Snackbar} from 'react-native-paper';
@@ -16,9 +17,15 @@ import IconPass from 'react-native-vector-icons/Feather';
 import auth from '@react-native-firebase/auth'; //import auth
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import user, * as userSlices from '../slices/user';
+import {useDispatch} from 'react-redux';
 // import RNRestart from 'react-native-restart';
 
 function LoginScreen({navigation}) {
+  // abis itu kita definisikan dispatch buat store semua data ke komponen lain
+  const dispatch = useDispatch();
+
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [user, setUser] = React.useState('');
@@ -76,6 +83,7 @@ function LoginScreen({navigation}) {
         setUser(tempData); //setdata nya harus diluar foreach, biar kedetect
         setIdDoc(tempIdDoc);
         await AsyncStorage.setItem('user', JSON.stringify(tempData[0]._data));
+        dispatch(userSlices.setResultUser(tempData[0]._data));
       });
   };
 

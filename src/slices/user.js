@@ -11,7 +11,7 @@ export const counterSlice = createSlice({
   reducers: {
     //reducer berguna untuk mengubah nilai dari  state yang awal menjadi hasil terkini dari sebuah proses di page lain
     setResultUser: (state, action) => {
-      state.resultNowshowing = action.payload; //nilai payload didapat dari hasil API atau hasil sebuah proses di page lain
+      state.resultUser = action.payload; //nilai payload didapat dari hasil API atau hasil sebuah proses di page lain
     },
   },
 });
