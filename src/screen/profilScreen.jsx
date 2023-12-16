@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React from 'react';
 
 import {PaperProvider, Snackbar} from 'react-native-paper';
@@ -13,16 +14,18 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
+import {useSelector} from 'react-redux';
 // import RNRestart from 'react-native-restart';
 
 function ProfilScreen({navigation}) {
-  const [cekUser, setUser] = React.useState(null);
-  React.useEffect(() => {
-    (async () => {
-      const user = await AsyncStorage.getItem('user');
-      setUser(JSON.parse(user));
-    })();
-  }, []);
+  const state = useSelector(state => state.user);
+  //supaya ga error unknown selector, state yang harus dipilih mau yang mana
+  //disini mau ngambil data dari store user, jadi state nya state.user
+
+  const {resultUser} = state;
+
+  console.log(state);
+  // console.log(resultUser);
 
   return (
     <>
@@ -37,7 +40,7 @@ function ProfilScreen({navigation}) {
               style={styles.profileImage}
               source={require('../asset/food1.jpg')}
             />
-            <Text style={styles.textName}>{cekUser?.username ?? 'Aloha'}</Text>
+            <Text style={styles.textName}>{resultUser.username}</Text>
           </View>
 
           <View style={styles.containerMenuProfile}>
