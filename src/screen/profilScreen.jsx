@@ -92,6 +92,7 @@ function ProfilScreen({navigation}) {
             <TouchableOpacity
               onPress={() => {
                 AsyncStorage.removeItem('user');
+                AsyncStorage.removeItem('idDoc');
                 // RNRestart.restart();
                 setTimeout(() => {
                   navigation.navigate('Home');
