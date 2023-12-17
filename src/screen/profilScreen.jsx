@@ -13,7 +13,6 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import {useSelector} from 'react-redux';
 // import RNRestart from 'react-native-restart';
 
