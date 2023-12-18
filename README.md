@@ -20,7 +20,7 @@
 
 
 # About The Project
-
+Explore the culinary world with our innovative food web app, Mama Recipes. This user-friendly platform offers a personalized experience, providing tailored recipe recommendations based on your taste preferences.  discover recipes using ingredients you already have. Access a vast Recipe Library with step-by-step instructions, making meal planning a breeze.  Join the vibrant community to share your culinary creations and discover the latest food trends. Mama recipes is not just an app; it's your culinary companion, transforming your kitchen into a haven of flavors. Visit our web app now and embark on a flavorful journey!
 
 
 ## Built With
