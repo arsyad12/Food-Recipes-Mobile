@@ -82,3 +82,7 @@ yarn android
 ## Download  App
 
 Documentation files are provided in the [Mama Recipes App](https://github.com/arsyad12/Food-Recipes-Mobile/releases/tag/v.1.0.1)
+
+## Related Project
+
+:rocket: [`Food Recipe Mobile`](https://github.com/arsyad12/Food-Recipes-Mobile)
